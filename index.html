@@ -102,15 +102,27 @@ h1 em{font-style:normal;color:var(--ink-3)}
 .card .frame video{opacity:0;transition:opacity .4s}
 .card.playing .frame video{opacity:1}
 .card:hover .frame{transform:translateY(0) scale(1.015)}
-.card .meta{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding:18px 22px 20px;border-top:1px solid var(--line)}
-.card h3{margin:0;font-weight:500;font-size:19px;letter-spacing:-.02em;line-height:1.2}
+.card .meta{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding:18px 22px 10px}
+.card:hover h3{color:var(--accent-ink)}
+.card h3{transition:color .2s;margin:0;font-weight:500;font-size:19px;letter-spacing:-.02em;line-height:1.2}
 .card p{margin:4px 0 0;color:var(--ink-2);font-size:14px;line-height:1.4}
 .card .kpi{text-align:right;flex:none}
 .card .kpi b{display:block;font-weight:500;font-size:20px;letter-spacing:-.03em;line-height:1}
 .card .kpi span{display:block;margin-top:5px}
 .card .idx{position:absolute;top:17px;left:22px;z-index:2;color:var(--ink-3)}
-.card .open{position:absolute;top:10px;right:10px;z-index:2;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--card);color:var(--ink);opacity:0;transform:scale(.8);transition:opacity .35s var(--ease),transform .35s var(--ease);box-shadow:var(--shadow)}
-.card:hover .open,.card:focus-visible .open{opacity:1;transform:none}
+.card h3 a::after{content:'';position:absolute;inset:0;z-index:1}
+.card h3 a:focus-visible{outline:none}.card:has(h3 a:focus-visible){outline:2px solid var(--accent);outline-offset:3px}
+.card .lesson{padding:0 22px 4px;color:var(--ink-3);font-size:13px;line-height:1.5;font-family:var(--mono)}
+.card .lesson b{color:var(--ink-2);font-weight:400}
+.card .links{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:8px;padding:12px 22px 20px}
+.card .links a,.card .links span{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border:1px solid var(--line);border-radius:999px;font-family:var(--mono);font-size:12px;color:var(--ink-2);background:var(--card);transition:color .2s,border-color .2s,background .2s}
+.card .links a:hover{color:var(--ink);border-color:var(--ink-3)}
+.card .links a.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.card .links a.primary:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.card .links span{color:var(--ink-3);background:transparent;border-style:dashed}
+.card .meta{border-top:1px solid var(--line)}
+.card .live{position:absolute;top:13px;right:16px;z-index:2;display:inline-flex;align-items:center;gap:6px;color:var(--ink-3)}
+.card .live i{width:6px;height:6px;border-radius:50%;background:#22c55e}
 @media (min-width:1000px){.c-a .shot,.c-b .shot{min-height:360px}.c-b .frame{aspect-ratio:auto;height:100%;min-height:280px}.c-f .frame{aspect-ratio:16/6}}
 .c-b .frame img{object-position:left top}
 
@@ -188,50 +200,6 @@ footer{margin-top:96px;border-top:1px solid var(--line)}
 .rv{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .rv.in{opacity:1;transform:none}
 
-/* case dialog */
-dialog{padding:0;border:0;margin:0;max-width:none;max-height:none;width:100%;height:100%;background:transparent;color:var(--ink)}
-dialog::backdrop{background:rgba(10,10,9,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
-.sheet{position:absolute;inset:12px 0 0;background:var(--bg);border-radius:18px 18px 0 0;overflow-y:auto;overscroll-behavior:contain;animation:up .55s var(--ease)}
-@media (min-width:900px){.sheet{inset:28px 28px 0}}
-@keyframes up{from{transform:translateY(40px);opacity:0}}
-dialog.closing .sheet{animation:down .28s ease-in forwards}
-@keyframes down{to{transform:translateY(40px);opacity:0}}
-.sheet-bar{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;height:60px;padding:0 var(--pad);background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.sheet-bar .hide-sm{display:none}@media (min-width:600px){.sheet-bar .hide-sm{display:inline}}
-.sheet-bar .nx{display:flex;gap:6px;flex:none}
-.icon-btn{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);transition:border-color .2s;flex:none}
-.icon-btn:hover{border-color:var(--ink-3)}
-.icon-btn svg{width:16px;height:16px}
-.case{max-width:1080px;margin:0 auto;padding:48px var(--pad) 80px}
-.case h2{font-weight:500;font-size:clamp(32px,5vw,60px);letter-spacing:-.045em;line-height:1.02;margin:14px 0 0;max-width:14em;text-wrap:balance}
-.case .lede{color:var(--ink-2);font-size:clamp(17px,1.8vw,20px);max-width:38em;margin:20px 0 0}
-.case .hero-media{margin-top:40px;background:var(--surface);border-radius:14px;padding:clamp(12px,3vw,36px);overflow:hidden}
-.case .hero-media>video,.case .hero-media>img{width:100%;border-radius:8px;box-shadow:var(--shadow);background:var(--card)}
-.case .facts{display:grid;grid-template-columns:repeat(2,1fr);margin-top:40px;border-top:1px solid var(--line)}
-.case .facts div{padding:18px 16px 20px 0;border-bottom:1px solid var(--line)}
-.case .facts b{display:block;font-weight:500;font-size:28px;letter-spacing:-.035em;line-height:1}
-.case .facts span{display:block;margin-top:8px;color:var(--ink-2);font-size:14px;line-height:1.35}
-@media (min-width:720px){.case .facts{grid-template-columns:repeat(4,1fr)}}
-.case .cols{display:grid;gap:32px;margin-top:48px}
-@media (min-width:720px){.case .cols{grid-template-columns:1fr 1fr;gap:48px}}
-.case h4{margin:0 0 10px;color:var(--ink-3);font-weight:400}
-.case .cols p{margin:0;font-size:17px;line-height:1.6}
-.case .cols p+p{margin-top:12px}
-.case .stack{margin-top:40px;padding:16px 20px;border:1px dashed var(--line);border-radius:10px;color:var(--ink-2);font-size:14px}
-.case .stack .mono{color:var(--ink-3);margin-right:10px}
-.case .gal{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:40px calc(var(--pad)*-1) 0;padding:0 var(--pad) 8px;scrollbar-width:thin}
-.case .gal img{height:clamp(240px,34vw,400px);width:auto;max-width:none;border-radius:10px;scroll-snap-align:start;border:1px solid var(--line);background:var(--card)}
-.ba{position:relative;margin-top:16px;border-radius:8px;overflow:hidden;box-shadow:var(--shadow);user-select:none;-webkit-user-select:none}
-.ba img{width:100%}
-.ba .after{position:absolute;inset:0;height:100%;object-fit:cover;clip-path:inset(0 0 0 50%)}
-.ba .bar{position:absolute;top:0;bottom:0;left:50%;width:2px;margin-left:-1px;background:var(--accent);pointer-events:none}
-.ba .bar::after{content:'';position:absolute;top:50%;left:50%;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M9 7l-5 5 5 5M15 7l5 5-5 5'/%3E%3C/svg%3E") center/18px no-repeat}
-.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
-.ba .lbl{position:absolute;top:10px;padding:3px 8px;border-radius:6px;background:rgba(0,0,0,.62);color:#fff;pointer-events:none}
-.case .next{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:72px;padding-top:24px;border-top:1px solid var(--line);width:100%;text-align:left}
-.case .next b{display:block;font-weight:500;font-size:clamp(22px,3vw,34px);letter-spacing:-.035em;margin-top:6px;transition:color .2s}
-.case .next:hover b{color:var(--accent)}
-
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 </style>
 </head>
@@ -273,7 +241,7 @@ dialog.closing .sheet{animation:down .28s ease-in forwards}
   </header>
 
   <section id="work" class="sec wrap">
-    <div class="sec-head rv"><h2>Selected work<sup>06</sup></h2><span class="mono muted">open one for the write-up</span></div>
+    <div class="sec-head rv"><h2>Selected work<sup>06</sup></h2><span class="mono muted">every one runs live in your browser</span></div>
     <div class="grid" id="grid"></div>
 
     <div class="also rv">
@@ -372,134 +340,54 @@ dialog.closing .sheet{animation:down .28s ease-in forwards}
 
 <footer><div class="wrap mono muted"><span>© 2026 temirlan zarymkanov</span><span>almaty, kazakhstan</span></div></footer>
 
-<dialog id="case" aria-label="Project write-up"><div class="sheet" id="sheet"></div></dialog>
 
 <script>
 /* ---------- data ---------- */
+const GHUB='https://github.com/temirlanzzz/',SITE='https://temirlanzzz.github.io/';
 const P=[
-{id:'graft',cls:'c-a',name:'Graft',kind:'chrome extension · llm',line:'Restyle any website with a prompt',kpi:['22/22','e2e checks'],
- img:'img/graft-after.webp',video:'assets/graft/graft-demo.mp4',
- title:'Restyle any website, one element at a time.',
- lede:'Pick any element, describe the change in plain words, and see it restyled live. The change is saved per site and reapplied on load.',
- facts:[['22/22','end-to-end checks pass'],['MV3','Manifest V3 extension'],['Per-site','styles saved and reapplied'],['0','lines of model-written code run']],
- problem:['Sites look the way their owners want, not the way I want. Custom CSS is slow to write and breaks whenever the markup changes.'],
- learned:['Never let the model write code. Graft only accepts a whitelisted set of scoped CSS and a few allowed DOM operations, and everything else is sanitized. That is what makes it safe to run on any site.','Host pages fight your UI: even inside a Shadow DOM, site CSS overrode my panel, so I switched to explicit styles and a solid background. And every LLM call needs a timeout and an error a person can read.'],
- stack:'Chrome MV3 · Shadow DOM · LLM with a whitelisted op schema · CSS sanitizer',
- ba:['img/graft-before.webp','img/graft-after.webp'],
- gal:['img/graft-picker.webp','img/graft-prompt.webp','img/graft-confetti.webp','img/graft-popup.webp']},
-{id:'tracer',cls:'c-b',name:'Tracer',kind:'provenance',line:'Find where text really came from',kpi:['1998','true origin'],
- img:'img/tracer-graph.webp',video:'assets/tracer/tracer-demo.mp4',
- title:'Find where a piece of text really came from.',
- lede:'Paste text, and the Tracer finds exact copies, near-duplicates and paraphrases, dates the original and shows evidence you can check yourself.',
- facts:[['12','live pages checked'],['2 + 3','exact copies + near-duplicates'],['1998','origin dated via Wayback'],['15/15','tests pass']],
- problem:['Copied text spreads faster than its source. Page metadata is the usual way to date it, and it is often wrong.'],
- learned:['Page metadata lies. For a chapter of Pride and Prejudice it pointed to a page from 2024, while the Wayback Machine showed the source was first archived in 1998. Independent evidence beats what a page says about itself.','Caching matters: a cold run took 37 s, and about 6 s with the Wayback cache warm.'],
- stack:'Python · FastAPI · MinHash 5-gram shingles · MiniLM embeddings · Wayback CDX · trafilatura · Docker',
- gal:['img/tracer-evidence.webp','img/tracer-summary.webp','img/tracer-mobile.webp']},
-{id:'active-learning',cls:'c-c',name:'Label Less',kind:'ml · active learning',line:'90% accuracy with 80 labels, not 150',kpi:['−47%','labels'],
- img:'img/al-hero.webp',video:'assets/active-learning/active-learning-demo.mp4',
- title:'Label less, learn the same.',
- lede:'Two identical classifiers start from the same 10 labels. One is fed random images; the other asks for the ones it is least sure about. A live curve races them.',
- facts:[['80','labels to reach 90%, active'],['150','labels to reach 90%, random'],['92.1%','vs 88.1% at 100 labels'],['0','dependencies']],
- problem:['Labeling is the expensive part of ML. I cut it by 90% at work with active learning, and I wanted to show the mechanism live, trained in the browser.'],
- learned:['Uncertainty sampling is not a free win. With only 10 labels the model’s own uncertainty is unreliable, and entropy sampling lost to random on one seed. Testing five seeds and three strategies made margin sampling the default.','My first full-label baseline was undertrained, which made active learning look better than full supervision. Training it to convergence fixed a flattering but false comparison.'],
- stack:'Vanilla JS · softmax regression from scratch · entropy / margin / least-confident · UCI digits (1,797 images)',
- gal:['img/al-mobile.webp']},
-{id:'bg-studio',cls:'c-d',name:'Cutout',kind:'cv · on-device',line:'Background removal, nothing uploaded',kpi:['~3 s','per photo'],
- img:'img/bg-hero.webp',video:'assets/bg-studio/bg-studio-demo.mp4',
- title:'Cut out the subject. Nothing uploaded.',
- lede:'Drop a photo and a 44 MB segmentation network removes the background inside your browser. Then swap it for a colour, a gradient or a portrait blur.',
- facts:[['2.6–4.2 s','per photo, CPU only'],['44 MB','int8 model, open weights'],['3×','faster from two headers'],['0','uploads']],
- problem:['Most background removers upload your photo to someone’s server. I wanted one that does all of it on the device.'],
- learned:['Serving headers mattered more than the model. Without cross-origin isolation, WASM runs on one thread; adding COOP/COEP took inference from 10.1 s to 3.4 s.','Some failures were silent: local models are disabled by default in the web build, and the export expected a different input name. Capturing page errors in the test harness was the only way to find them.'],
- stack:'transformers.js v3 · ONNX Runtime Web (WASM, threaded) · ISNet / open RMBG · canvas compositing',
- wide:'img/bg-ba.webp',gal:['img/bg-mobile.webp']},
-{id:'fedlearn',cls:'c-e',name:'FedAvg, live',kind:'ml · federated',line:'Watch skewed data hurt federated learning',kpi:['90.8%','under skew'],
- img:'img/fl-hero.webp',video:'assets/fedlearn/fedlearn-demo.mp4',
- title:'Train together, share only weights.',
- lede:'Eight clients keep private slices of data and train one shared model with Federated Averaging. A slider adds label skew so you can watch non-IID data hurt.',
- facts:[['95.0%','FedAvg, IID data'],['90.8%','FedAvg, fully skewed'],['33%','local-only models, skewed'],['55×','more bytes sent than data kept']],
- problem:['Sensitive data, like medical records, cannot be pooled in one place. Federated learning trains on it anyway, but it is hard to picture what that costs.'],
- learned:['Federated learning protects privacy, not bandwidth. On a small dataset the weights sent around were 55× bigger than the raw data itself.','Uneven data is the real story. Averaging still builds a decent model from clients that are only 33% accurate on their own, but it trails centralized training by about 7 points.'],
- stack:'Vanilla JS/SVG · 64→32→10 MLP with backprop from scratch · FedAvg weighted by sample count',
- wide:'img/fl-ba.webp',gal:['img/fl-mobile.webp']},
-{id:'factcheck',cls:'c-f',name:'pytest-facts',kind:'llm · evaluation',line:'Unit tests for LLM answers',kpi:['9/10','held-out claims'],
- img:'img/fc-hero.webp',video:'assets/factcheck/factcheck-demo.mp4',
- title:'Unit tests for LLM answers.',
- lede:'Write claims as assert lines and each one is checked against your source. Retrieval finds the evidence, an NLI model decides, and the output reads like pytest: PASS, FAIL or SKIP.',
- facts:[['9/10','correct on held-out claims'],['~1 s','per 8-claim run'],['115 MB','models, all on-device'],['0','API keys or servers']],
- problem:['LLMs state wrong facts with confidence. I wanted to check answers against a source the same way I test code.'],
- learned:['Pronouns break sentence-level checking. “It was first released in 1991” did not support “Python was first released in 1991” until each piece of evidence included the sentence before it. That one change fixed two wrong verdicts.','A naive sentence splitter cut “Python 3.0” in half. And the one held-out miss: it called an unsupported claim false instead of skipping it.'],
- stack:'transformers.js · all-MiniLM-L6-v2 retrieval · nli-deberta-v3-xsmall cross-encoder (int8 ONNX)',
- gal:['img/fc-mobile.webp']}
+{id:'tracer',cls:'c-a',name:'Tracer',kind:'provenance',line:'Find where a piece of text really came from',kpi:['1998','true origin'],
+ img:'img/tracer-graph.webp',video:'assets/tracer/tracer-demo.mp4',demo:SITE+'tracer/',repo:GHUB+'tracer',
+ lesson:'Page metadata lies both ways: pemberley.com claims 2004, but the Wayback Machine saw it in 1998.'},
+{id:'graft',cls:'c-b',name:'Graft',kind:'agent · llm',line:'Point at anything in a running app, say what should change',kpi:['22/22','e2e checks'],
+ img:'img/graft-after.webp',video:'assets/graft/graft-demo.mp4',priv:true,
+ lesson:'Never let the model write free-form code: a whitelisted op schema is what makes it safe to run anywhere.'},
+{id:'label-less',cls:'c-c',name:'Label Less',kind:'ml · active learning',line:'Same accuracy with about half the labels',kpi:['−48%','labels to 90%'],
+ img:'img/al-hero.webp',video:'assets/active-learning/active-learning-demo.mp4',demo:SITE+'label-less/',repo:GHUB+'label-less',
+ lesson:'Uncertainty sampling is not a free win: entropy lost to random on 2 of 5 seeds. Margin won on all five.'},
+{id:'cutout',cls:'c-d',name:'Cutout',kind:'cv · on-device',line:'Background removal, nothing uploaded',kpi:['~2.5 s','per photo'],
+ img:'img/bg-hero.webp',video:'assets/bg-studio/bg-studio-demo.mp4',demo:SITE+'cutout/',repo:GHUB+'cutout',
+ lesson:'Cross-origin isolation is the big switch: 8-thread WASM took a photo from 15.7 s to about 2.3 s. WebGPU can’t run this model yet.'},
+{id:'fedavg-live',cls:'c-e',name:'FedAvg, live',kind:'ml · federated',line:'Watch skewed data hurt federated learning',kpi:['86.1%','fedavg, full skew'],
+ img:'img/fl-hero.webp',video:'assets/fedlearn/fedlearn-demo.mp4',demo:SITE+'fedavg-live/',repo:GHUB+'fedavg-live',
+ lesson:'Federated learning protects privacy, not bandwidth: the weights sent were 55.7× the raw data they protect.'},
+{id:'pytest-facts',cls:'c-f',name:'pytest-facts',kind:'llm · evaluation',line:'Unit tests for LLM answers: PASS, FAIL or SKIP against a source',kpi:['12/14','held-out claims'],
+ img:'img/fc-hero.webp',video:'assets/factcheck/factcheck-demo.mp4',demo:SITE+'pytest-facts/',repo:GHUB+'pytest-facts',
+ lesson:'Pronouns break retrieval, not just NLI: fixing how premises are built took accuracy from 4/8 to 7/8. Thresholds barely mattered.'}
 ];
 
 const $=s=>document.querySelector(s);
 const pad=i=>String(i+1).padStart(2,'0');
-const arrow='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>';
 
 /* ---------- grid ---------- */
 $('#grid').innerHTML=P.map((p,i)=>`
-<button class="card ${p.cls} rv" data-id="${p.id}" aria-label="${p.name}: ${p.line}. Open write-up">
+<article class="card ${p.cls} rv" data-id="${p.id}">
   <span class="idx mono">${pad(i)} — ${p.kind}</span>
-  <span class="open">${arrow}</span>
-  <span class="shot"><span class="frame"><img src="${p.img}" alt="" loading="lazy" decoding="async"><video muted loop playsinline preload="none" data-src="${p.video}"></video></span></span>
-  <span class="meta"><span><h3>${p.name}</h3><p>${p.line}</p></span><span class="kpi"><b>${p.kpi[0]}</b><span class="mono muted">${p.kpi[1]}</span></span></span>
-</button>`).join('');
+  ${p.priv?'<span class="live mono">private</span>':'<span class="live mono"><i></i>live</span>'}
+  <div class="shot"><div class="frame"><img src="${p.img}" alt="" loading="lazy" decoding="async"><video muted loop playsinline preload="none" data-src="${p.video}"></video></div></div>
+  <div class="meta"><div><h3>${p.priv?p.name:`<a href="${p.demo}">${p.name}</a>`}</h3><p>${p.line}</p></div><div class="kpi"><b>${p.kpi[0]}</b><span class="mono muted">${p.kpi[1]}</span></div></div>
+  <p class="lesson"><b>lesson —</b> ${p.lesson}</p>
+  <div class="links">${p.priv?'<span>private repo · in development</span>':`<a class="primary" href="${p.demo}">open live demo ↗</a><a href="${p.repo}" target="_blank" rel="noopener">code ↗</a>`}</div>
+</article>`).join('');
 
 const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+const vio=new IntersectionObserver(es=>es.forEach(e=>{const c=e.target,v=c.querySelector('video');
+  if(e.isIntersecting){if(!v.src)v.src=v.dataset.src;v.play().then(()=>c.classList.add('playing')).catch(()=>{})}else{v.pause()}}),{threshold:.5});
 document.querySelectorAll('.card').forEach(c=>{
-  c.onclick=()=>openCase(c.dataset.id);
-  if(!fine)return;
-  const v=c.querySelector('video');
+  const v=c.querySelector('video'),priv=P.find(p=>p.id===c.dataset.id).priv;
+  if(priv||!fine){vio.observe(c);return}
   c.addEventListener('mouseenter',()=>{if(!v.src)v.src=v.dataset.src;v.play().then(()=>c.classList.add('playing')).catch(()=>{})});
   c.addEventListener('mouseleave',()=>{c.classList.remove('playing');setTimeout(()=>v.pause(),300)});
 });
-
-/* ---------- case dialog ---------- */
-const dlg=$('#case'),sheet=$('#sheet');
-const ic=d=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="${d}"/></svg>`;
-function caseHTML(p){
-  const i=P.indexOf(p),n=P[(i+1)%P.length],pv=P[(i+P.length-1)%P.length];
-  return `<div class="sheet-bar"><span class="mono muted">${pad(i)} / 06<span class="hide-sm"> — ${p.kind}</span></span>
-  <span class="nx"><button class="icon-btn" data-go="${pv.id}" aria-label="Previous project">${ic('M15 6l-6 6 6 6')}</button><button class="icon-btn" data-go="${n.id}" aria-label="Next project">${ic('M9 6l6 6-6 6')}</button><button class="icon-btn" data-close aria-label="Close">${ic('M6 6l12 12M18 6 6 18')}</button></span></div>
-  <article class="case">
-    <div class="mono muted">${p.name}</div>
-    <h2>${p.title}</h2>
-    <p class="lede">${p.lede}</p>
-    <div class="hero-media"><video src="${p.video}" poster="${p.img}" autoplay muted loop playsinline controls></video>
-      ${p.ba?`<div class="ba"><img src="${p.ba[0]}" alt="Before"><img class="after" src="${p.ba[1]}" alt="After"><span class="lbl mono" style="left:10px">before</span><span class="lbl mono" style="right:10px">after</span><div class="bar"></div><input type="range" min="0" max="100" value="50" aria-label="Drag to compare before and after"></div>`:''}
-      ${p.wide?`<img src="${p.wide}" alt="Result comparison" loading="lazy" style="margin-top:16px">`:''}
-    </div>
-    <div class="facts">${p.facts.map(f=>`<div><b>${f[0]}</b><span>${f[1]}</span></div>`).join('')}</div>
-    <div class="cols"><div><h4 class="mono">problem</h4>${p.problem.map(t=>`<p>${t}</p>`).join('')}</div><div><h4 class="mono">what i learned</h4>${p.learned.map(t=>`<p>${t}</p>`).join('')}</div></div>
-    <div class="stack"><span class="mono">stack</span>${p.stack}</div>
-    ${p.gal?.length?`<div class="gal">${p.gal.map(g=>`<img src="${g}" alt="${p.name} screenshot" loading="lazy">`).join('')}</div>`:''}
-    <button class="next" data-go="${n.id}"><span><span class="mono muted">next project</span><b>${n.name} — ${n.line}</b></span><span class="icon-btn">${ic('M5 12h14M13 6l6 6-6 6')}</span></button>
-  </article>`;
-}
-let closing=null;
-function openCase(id,push=true){
-  const p=P.find(x=>x.id===id);if(!p)return;
-  if(closing){clearTimeout(closing);closing=null;dlg.classList.remove('closing')}
-  sheet.innerHTML=caseHTML(p);sheet.scrollTop=0;
-  const ba=sheet.querySelector('.ba');
-  if(ba){const r=ba.querySelector('input'),a=ba.querySelector('.after'),b=ba.querySelector('.bar');r.oninput=()=>{a.style.clipPath=`inset(0 0 0 ${r.value}%)`;b.style.left=r.value+'%'}}
-  if(!dlg.open){dlg.showModal();document.body.style.overflow='hidden'}
-  sheet.querySelector('[data-close]').focus({preventScroll:true});
-  if(push&&location.hash!=='#'+id)history.pushState(null,'','#'+id);
-}
-function closeCase(push=true){
-  if(!dlg.open||closing)return;
-  dlg.classList.add('closing');
-  closing=setTimeout(()=>{closing=null;dlg.classList.remove('closing');dlg.close();sheet.innerHTML='';document.body.style.overflow=''},260);
-  if(push&&P.some(p=>'#'+p.id===location.hash))history.pushState(null,'',location.pathname+location.search);
-}
-sheet.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)return openCase(g.dataset.go);if(e.target.closest('[data-close]'))closeCase()});
-dlg.addEventListener('click',e=>{if(e.target===dlg)closeCase()});
-dlg.addEventListener('cancel',e=>{e.preventDefault();closeCase()});
-const route=()=>{const id=location.hash.slice(1);P.some(p=>p.id===id)?openCase(id,false):closeCase(false)};
-addEventListener('popstate',route);route();
 
 /* ---------- reveal ---------- */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -6% 0px'});
