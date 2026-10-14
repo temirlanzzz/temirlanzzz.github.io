@@ -106,7 +106,7 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
 .tile{position:relative;display:block;aspect-ratio:5/4;border-radius:22px;overflow:hidden;background:var(--t);isolation:isolate;cursor:none}
 @media (hover:none){.tile{cursor:pointer}}
 .tile .shot{position:absolute;left:9%;right:9%;top:13%;bottom:-6%;border-radius:12px 12px 0 0;overflow:hidden;background:#fff;box-shadow:0 30px 60px -20px rgba(0,0,0,.45);transition:transform .8s var(--ease)}
-.tile .shot img,.tile .shot video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
+.tile .shot img,.tile .shot video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top}
 .tile .shot video{opacity:0;transition:opacity .4s}
 .tile.playing .shot video{opacity:1}
 .tile:hover .shot{transform:translateY(-3%) scale(1.02)}
@@ -401,7 +401,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 const wio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelector('.wipe').classList.add('in');wio.unobserve(e.target)}}),{threshold:.05});
 document.querySelectorAll('#tiles article').forEach((a,i)=>{a.querySelector('.wipe').style.transitionDelay=(i%2)*90+'ms';wio.observe(a)});
-const GLY='▖▗▘▙▚▛▜▝▞▟░▒▓<>/\\#*+=01';
+const GLY='#*+/<>=01_-~';
 function scramble(el){
   const nodes=[];const walk=n=>{n.childNodes.forEach(c=>c.nodeType===3?nodes.push([c,c.textContent]):walk(c))};walk(el);
   const t0=performance.now(),dur=900;
