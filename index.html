@@ -135,6 +135,26 @@ h1 em{font-style:normal;color:var(--ink-3)}
 .xp .what{grid-column:1/-1;color:var(--ink-2);font-size:15px}
 .xp .what b{color:var(--ink);font-weight:500}
 
+.sub-h{font-weight:400;margin:0 0 14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{padding:6px 12px;border:1px solid var(--line);border-radius:999px;font-size:14px;color:var(--ink-2);background:var(--card)}
+.tl{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.tl>li{display:grid;gap:8px;padding:26px 0;border-bottom:1px solid var(--line)}
+@media (min-width:860px){.tl>li{grid-template-columns:220px 1fr;gap:32px}}
+.tl .when{color:var(--ink-3);padding-top:5px}
+.tl h3{margin:0;font-weight:500;font-size:20px;letter-spacing:-.02em}
+.tl .org{display:block;margin-top:2px;color:var(--ink-3);font-size:14px}
+.tl ul{margin:12px 0 0;padding:0;list-style:none;max-width:44em}
+.tl ul li{position:relative;padding-left:18px;color:var(--ink-2);font-size:15px;line-height:1.55}
+.tl ul li+li{margin-top:6px}
+.tl ul li::before{content:'';position:absolute;left:2px;top:.75em;width:7px;height:1px;background:var(--ink-3)}
+.tl b{color:var(--ink);font-weight:500}
+.edu{display:grid;gap:48px}
+@media (min-width:900px){.edu{grid-template-columns:5fr 7fr;gap:64px}}
+.edu .row{display:flex;flex-direction:column;gap:3px;padding:16px 0;border-top:1px solid var(--line)}
+.edu .row b{font-weight:500}
+.edu .row>span:not(.mono){color:var(--ink-2);font-size:15px}
+.pub b{transition:color .2s}.pub:hover b{color:var(--accent-ink)}
 /* contact */
 .contact{padding-top:120px}
 .contact>.mono{color:var(--ink-3)}
@@ -209,6 +229,7 @@ dialog.closing .sheet{animation:down .28s ease-in forwards}
       <li class="hide-sm"><span class="mono clock" id="clock">--:--</span></li>
       <li><a href="#work">Work</a></li>
       <li><a href="#about">About</a></li>
+      <li class="hide-sm"><a href="#experience">Experience</a></li>
       <li class="hide-sm"><a href="https://github.com/temirlanzzz" target="_blank" rel="noopener">GitHub</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><button class="theme" id="theme" aria-label="Toggle dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor"/></svg></button></li>
@@ -218,9 +239,9 @@ dialog.closing .sheet{animation:down .28s ease-in forwards}
 
 <main id="top">
   <header class="hero wrap">
-    <div class="status mono rv"><b></b>engineering lead · adigy.ai</div>
+    <div class="status mono rv"><b></b>software engineering team lead · adigy.ai</div>
     <h1 class="rv">Temirlan ships production AI by day <em>and builds small, honest ML tools at night.</em></h1>
-    <p class="sub rv">Software engineering lead in AI and ML. Before that, ML pipelines for textile robotics at Sewts. Every project below comes with measured numbers, including the ones that didn’t flatter me.</p>
+    <p class="sub rv">Software engineering team lead in AI and ML, based in Almaty. Before that, ML pipelines for textile robotics at Sewts in Munich. Every project below comes with measured numbers, including the ones that didn’t flatter me.</p>
 
     <figure class="field rv">
       <canvas id="digits" aria-label="Interactive illustration: a grid of pixel digits. The model labels the ones it is least sure about first, and moving your cursor labels them too." role="img"></canvas>
@@ -247,19 +268,60 @@ dialog.closing .sheet{animation:down .28s ease-in forwards}
   </section>
 
   <section id="about" class="sec wrap">
-    <div class="sec-head rv"><h2>About</h2><span class="mono muted">production first</span></div>
+    <div class="sec-head rv"><h2>About</h2><span class="mono muted">almaty, kazakhstan</span></div>
     <div class="about">
       <div class="rv">
         <p class="lead">I like the part after the demo works: <span>making it fast, cheap, measurable and boring enough to trust.</span></p>
-        <p>I lead engineering at Adigy.ai, where we manage Amazon ads. Outside work I build small tools that run in the browser, and I benchmark them across seeds before I believe them.</p>
+        <p>Six years of shipping software, from full-stack platforms to ML pipelines for robotics. I now lead the engineering team at Adigy.ai, where we manage Amazon ads. Outside work I build small ML tools and benchmark them across seeds before I believe them.</p>
+        <p class="mono muted" style="margin-top:22px">english · russian · kazakh · german (intermediate)</p>
       </div>
-      <ul class="xp rv">
-        <li><span class="role">Engineering lead</span><span class="where mono">adigy.ai · now</span><span class="what">A new bid-optimization system raised user revenue by <b>20%</b>. Cut infrastructure cost by <b>35%</b>.</span></li>
-        <li><span class="role">ML engineer</span><span class="where mono">sewts</span><span class="what">ML pipelines for textile robotics. Active learning cut labeling cost by <b>90%</b>, and a diffusion model doubled the training data.</span></li>
-        <li><span class="role">Engineer</span><span class="where mono">fleek</span><span class="what">Shipped the MVP in <b>2 months</b>.</span></li>
-        <li><span class="role">MSc Data Analytics</span><span class="where mono">uni hildesheim</span></li>
-        <li><span class="role">BSc Computer Science</span><span class="where mono">nazarbayev university</span></li>
-      </ul>
+      <div class="rv">
+        <h3 class="mono muted sub-h">stack i use</h3>
+        <div class="chips">
+          <span>Python</span><span>TypeScript</span><span>PyTorch</span><span>PyTorch Lightning</span><span>Hugging Face</span><span>LangChain</span><span>LlamaIndex</span><span>scikit-learn</span><span>FastAPI</span><span>Django</span><span>Next.js</span><span>React</span><span>Vue</span><span>PostgreSQL</span><span>Redis</span><span>Pinecone · FAISS</span><span>Docker</span><span>Terraform</span><span>GitHub Actions</span><span>AWS</span><span>GCP</span><span>Datadog</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="sec wrap">
+    <div class="sec-head rv"><h2>Experience<sup>2020 — now</sup></h2><span class="mono muted">6 roles</span></div>
+    <ol class="tl">
+      <li class="rv"><span class="when mono">10.2025 — now</span><div><h3>Software Engineering Team Lead</h3><span class="org">Adigy.ai · Amazon ads management · remote, USA</span><ul>
+        <li>Built a state-management system for bid optimization with market-weighted averages, raising user revenue by <b>20%</b>.</li>
+        <li>Reworked infrastructure and database queries with AWS and Datadog, cutting monthly cost by <b>35%</b>.</li>
+        <li>Introduced TDD and raised test coverage <b>4×</b>. Shortened the release cycle from 10 days to 3.</li></ul></div></li>
+      <li class="rv"><span class="when mono">08.2024 — 10.2025</span><div><h3>ML &amp; Software Engineer</h3><span class="org">Sewts GmbH · robotics and automation · Munich</span><ul>
+        <li>Containerized PyTorch pipelines for batch and real-time inference with continuous retraining on live data: <b>+10%</b> accuracy.</li>
+        <li>Active learning in the annotation loop cut labeling cost by <b>90%</b>.</li>
+        <li>A diffusion model for synthetic textile images <b>doubled</b> the dataset. CI/CD with Docker, GitHub Actions and Terraform.</li></ul></div></li>
+      <li class="rv"><span class="when mono">09.2023 — 06.2024</span><div><h3>Software Engineer / Team Lead</h3><span class="org">Fleek.kz · logistics platform · remote</span><ul>
+        <li>Led a logistics platform on FastAPI and Next.js with route optimization and automated shipment tracking.</li>
+        <li>Shipped the MVP in <b>2 months</b>, twice as fast as planned. Ran sprints as Scrum Master and onboarded junior developers.</li></ul></div></li>
+      <li class="rv"><span class="when mono">12.2022 — 08.2023</span><div><h3>Software Engineer</h3><span class="org">Macdent.kz · Astana</span><ul>
+        <li>Full-stack PHP and JavaScript. Query optimization and predictive caching made responses <b>10×</b> faster.</li>
+        <li>Moved the server to AWS for <b>5×</b> faster loads, and added automatic backups, sharding and CI/CD.</li></ul></div></li>
+      <li class="rv"><span class="when mono">08.2021 — 11.2022</span><div><h3>Machine Learning Researcher</h3><span class="org">Nazarbayev University · Astana</span><ul>
+        <li>Two peer-reviewed papers in applied ML and computer vision.</li>
+        <li>A retraining pipeline for a mobile pest-detection system improved the model by <b>50%</b>. Optimized YOLOv5 for edge devices.</li></ul></div></li>
+      <li class="rv"><span class="when mono">07.2020 — 08.2021</span><div><h3>Full-Stack Software Engineer</h3><span class="org">BRI · courses platform · Astana</span><ul>
+        <li>Built the mobile version of the product, which doubled daily active users from <b>20k to 40k</b>.</li>
+        <li>Partner integrations raised customer retention by <b>50%</b>. Legacy fixes cut downtime by 30%.</li></ul></div></li>
+    </ol>
+  </section>
+
+  <section id="education" class="sec wrap">
+    <div class="edu">
+      <div class="rv">
+        <h3 class="mono muted sub-h">education</h3>
+        <div class="row"><b>MSc Data Analytics</b><span>University of Hildesheim, Germany</span><span class="mono muted">ml · computer vision · optimization · 2023–2025</span></div>
+        <div class="row"><b>BSc Computer Science</b><span>Nazarbayev University, Kazakhstan</span><span class="mono muted">2019–2023</span></div>
+      </div>
+      <div class="rv">
+        <h3 class="mono muted sub-h">publications</h3>
+        <a class="row pub" href="https://ieeexplore.ieee.org/document/10424407" target="_blank" rel="noopener"><b>Enhancing Machine Learning Training Performance in Smart Agriculture Datasets Using a Mobile App</b><span>Zarymkanov, Kargar, Pinotti, O’Flynn, Zorbas</span><span class="mono muted">ieee metroagrifor · 2023 ↗</span></a>
+        <a class="row pub" href="https://astesj.com/v07/i04/p10/" target="_blank" rel="noopener"><b>A Machine Learning Model Selection Considering Tradeoffs between Accuracy and Interpretability</b><span>Nazir, Zarymkanov, Park</span><span class="mono muted">astes journal · 2022 ↗</span></a>
+      </div>
     </div>
   </section>
 
@@ -274,7 +336,7 @@ dialog.closing .sheet{animation:down .28s ease-in forwards}
   </section>
 </main>
 
-<footer><div class="wrap mono muted"><span>© 2026 temirlan zarymkanov</span><span>hand-built · no frameworks · no tracking</span></div></footer>
+<footer><div class="wrap mono muted"><span>© 2026 temirlan zarymkanov</span><span>almaty, kazakhstan</span></div></footer>
 
 <dialog id="case" aria-label="Project write-up"><div class="sheet" id="sheet"></div></dialog>
 
@@ -412,7 +474,7 @@ document.querySelectorAll('.rv').forEach(el=>{if(el.classList.contains('card'))e
 /* ---------- theme, clock, copy ---------- */
 const root=document.documentElement;
 $('#theme').onclick=()=>{const dark=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;root.dataset.theme=dark?'light':'dark';try{localStorage.setItem('theme',root.dataset.theme)}catch(e){}drawAll()};
-const tick=()=>{$('#clock').textContent=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+' your time'};tick();setInterval(tick,15000);
+const tick=()=>{$('#clock').textContent='almaty '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Almaty'})};tick();setInterval(tick,15000);
 $('#copy').onclick=async e=>{const b=e.currentTarget,l=$('#copy-label');try{await navigator.clipboard.writeText(b.dataset.email);b.classList.add('copied');l.textContent='copied to clipboard';setTimeout(()=>{b.classList.remove('copied');l.textContent=b.dataset.email},1600)}catch(_){location.href='mailto:'+b.dataset.email}};
 
 /* ---------- fig. 0: active-learning digit field ---------- */
