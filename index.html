@@ -56,7 +56,10 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 @media (max-width:719px){.nav .hide-sm{display:none}.nav ul{gap:16px}}
 
 /* hero */
-.hero{padding-top:72px;padding-bottom:28px}
+.hero{padding-top:28px;padding-bottom:28px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hero-fig{margin-bottom:0}
+.hero-fig #opt{height:320px}@media (min-width:720px){.hero-fig #opt{height:460px}}
 .status{display:inline-flex;align-items:center;gap:8px;color:var(--ink-2)}
 .status b{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:ping 2.4s infinite}
 @keyframes ping{0%{box-shadow:0 0 0 0 rgba(34,197,94,.45)}70%,100%{box-shadow:0 0 0 7px rgba(34,197,94,0)}}
@@ -223,13 +226,16 @@ footer{margin-top:96px;border-top:1px solid var(--line)}
 
 <main id="top">
   <header class="hero wrap">
-    <div class="status mono rv"><b></b>software engineering team lead · adigy.ai</div>
-    <h1 class="rv">Temirlan ships production AI by day <em>and builds small, honest ML tools at night.</em></h1>
-    <p class="sub rv">Software engineering team lead in AI and ML, based in Almaty. Before that, ML pipelines for textile robotics at Sewts in Munich. Every project below comes with measured numbers, including the ones that didn’t flatter me.</p>
+    <h1 class="sr-only">Temirlan Zarymkanov, software engineering team lead in AI and ML</h1>
+    <figure class="fig hero-fig rv">
+      <div class="fig-top mono"><span>fig. 0 — three optimizers, one valley</span><span class="legend"><span><i style="background:var(--ink-3)"></i>sgd</span><span><i style="background:var(--ink)"></i>momentum</span><span><i style="background:var(--accent)"></i>adam</span></span></div>
+      <canvas id="opt" aria-label="Interactive chart: SGD, momentum and Adam descending the Rosenbrock function. Click to pick a new start point." role="img"></canvas>
+      <figcaption class="field-cap mono"><span><span class="acc">click anywhere to drop a start point.</span> rosenbrock function, real gradients, same start for all three.</span><span class="muted" id="opt-stats"></span></figcaption>
+    </figure>
 
     <figure class="field rv">
       <canvas id="digits" aria-label="Interactive figure: a softmax classifier trained live on noisy pixel digits, using margin-based active learning. Moving the cursor labels digits too." role="img"></canvas>
-      <figcaption class="field-cap mono"><span>fig. 0 — a real classifier learning in your browser. it asks for the digits it is least sure about. <span class="acc">orange = still wrong.</span> hover to label some yourself.</span><span class="muted" id="digits-count"></span></figcaption>
+      <figcaption class="field-cap mono"><span>fig. 1 — a real classifier learning in your browser. it asks for the digits it is least sure about. <span class="acc">orange = still wrong.</span> hover to label some yourself.</span><span class="muted" id="digits-count"></span></figcaption>
     </figure>
 
     <div class="metrics rv">
@@ -252,12 +258,7 @@ footer{margin-top:96px;border-top:1px solid var(--line)}
   </section>
 
   <section id="lab" class="sec wrap">
-    <div class="sec-head rv"><h2>Lab<sup>02</sup></h2><span class="mono muted">small things that actually compute</span></div>
-    <figure class="fig rv">
-      <div class="fig-top mono"><span>fig. 1 — three optimizers, one valley</span><span class="legend"><span><i style="background:var(--ink-3)"></i>sgd</span><span><i style="background:var(--ink)"></i>momentum</span><span><i style="background:var(--accent)"></i>adam</span></span></div>
-      <canvas id="opt" aria-label="Interactive chart: SGD, momentum and Adam descending the Rosenbrock function. Click to pick a new start point." role="img"></canvas>
-      <figcaption class="field-cap mono"><span><span class="acc">click anywhere to drop a start point.</span> rosenbrock function, real gradients, same start for all three.</span><span class="muted" id="opt-stats"></span></figcaption>
-    </figure>
+    <div class="sec-head rv"><h2>Lab<sup>01</sup></h2><span class="mono muted">small things that actually compute</span></div>
     <figure class="fig rv">
       <div class="fig-top mono"><span>fig. 2 — minhash, the trick inside tracer</span><span class="muted">edit either text</span></div>
       <div class="mh">
