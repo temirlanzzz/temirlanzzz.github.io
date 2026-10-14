@@ -79,6 +79,24 @@ em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-
 .legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px;font-family:var(--mono);font-size:11px}
 .legend i{display:inline-block;width:12px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
 
+/* about — top */
+.me{display:grid;gap:28px;padding-top:56px;padding-bottom:64px;align-items:start}
+@media (min-width:860px){.me{grid-template-columns:280px 1fr;gap:56px;padding-top:80px;padding-bottom:88px}}
+.me-ava{position:relative}
+#me{width:200px;height:200px;border-radius:28px;background:#050806;box-shadow:0 20px 50px -20px rgba(10,40,20,.6);cursor:crosshair}
+@media (min-width:860px){#me{width:280px;height:280px}}
+.me-cap{display:block;margin-top:10px}
+.hello{display:inline-flex;align-items:center;gap:8px;margin:0}
+.hello i{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.2)}
+.me h1{font-weight:500;font-size:clamp(34px,4.6vw,62px);line-height:1.02;letter-spacing:-.045em;margin:16px 0 0;max-width:15em;text-wrap:balance}
+.me h1 em.s{font-size:1.06em;color:var(--ink-3)}
+.me-text>p:not(.hello){color:var(--ink-2);font-size:17px;line-height:1.6;max-width:40em;margin:18px 0 0}
+.me-text>p:not(.hello):first-of-type{margin-top:26px}
+.me-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:24px}
+.me-tags span,.me-tags a{padding:5px 11px;border-radius:999px;background:var(--surface);font-size:13px;color:var(--ink-2)}
+.me-tags a{background:var(--ink);color:var(--bg);transition:background .25s}
+.me-tags a:hover{background:var(--accent)}
+.hero{padding-top:0}
 /* hero */
 .hero{padding-top:12px}
 #opt{width:100%;height:440px;cursor:crosshair}
@@ -223,8 +241,22 @@ footer .wrap{display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:w
 </nav>
 
 <main id="top">
+  <section id="about" class="me wrap">
+    <div class="me-ava rv">
+      <canvas id="me" role="img" aria-label="Portrait of Temirlan rendered as animated matrix glyphs"></canvas>
+      <span class="mono muted me-cap" id="me-cap">me, in glyphs</span>
+    </div>
+    <div class="me-text rv">
+      <p class="mono muted hello"><i></i>team lead at adigy.ai · almaty</p>
+      <h1>Hi, I’m Temirlan. I make machine learning <em class="s">boring enough to trust.</em></h1>
+      <p>I’m a software engineer from Kazakhstan. I spent the last few years in Germany: a master’s in data analytics in Hildesheim, then ML pipelines for robots that handle textiles at Sewts in Munich. Now I’m back in Almaty, leading the engineering team at Adigy.ai, where we manage Amazon ads.</p>
+      <p>I got hooked on building things through school competitions in programming and robotics. My favourite project was a smart vest for visually impaired people, which won first place at a national project competition. At Nazarbayev University I tutored other students in programming and published my first ML papers.</p>
+      <p>The part I enjoy most comes after the demo works: making it fast, cheap and measurable. Off the clock I read about robotics, driver-assistance systems and startups, and build small ML tools like the ones below.</p>
+      <div class="me-tags"><span>english</span><span>russian</span><span>kazakh</span><span>german</span><a href="#experience">6 years of experience ↓</a></div>
+    </div>
+  </section>
+
   <header class="hero wrap">
-    <h1 class="sr-only">Temirlan Zarymkanov, software engineering team lead in AI and ML</h1>
     <div class="box rv" id="hero-box">
       <canvas id="opt" aria-label="Interactive figure: SGD, momentum and Adam descending the Rosenbrock function over a dithered loss landscape. Click to pick a new start point." role="img"></canvas>
       <div class="win w1" data-drag>
@@ -277,14 +309,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:w
     </div>
   </section>
 
-  <section id="about" class="sec wrap">
-    <div class="sec-head"><h2 data-scramble>About <em class="s">me</em></h2><span class="mono muted up">almaty, kazakhstan</span></div>
+  <section id="career" class="sec wrap">
+    <div class="sec-head"><h2 data-scramble>Experience <em class="s">&amp; stack</em></h2><span class="mono muted up">2020 — now</span></div>
     <div class="about">
       <div class="intro rv">
-        <p class="lead">I like the part after the demo works: <span>making it fast, cheap, measurable and boring enough to trust.</span></p>
-        <p>Six years of shipping software, from full-stack platforms to ML pipelines for robotics. I lead the engineering team at Adigy.ai, where we manage Amazon ads. Outside work I build small ML tools and benchmark them across seeds before I believe them.</p>
+        <p class="lead">Six years, six teams. <span>From full-stack platforms to ML pipelines for robots and ad bidding.</span></p>
         <div class="stack"><span>Python</span><span>TypeScript</span><span>PyTorch</span><span>Lightning</span><span>Hugging Face</span><span>LangChain</span><span>LlamaIndex</span><span>scikit-learn</span><span>FastAPI</span><span>Django</span><span>Next.js</span><span>React</span><span>PostgreSQL</span><span>Redis</span><span>FAISS</span><span>Docker</span><span>Terraform</span><span>AWS</span><span>GCP</span><span>Datadog</span></div>
-        <p class="mono muted" style="margin-top:22px">english · russian · kazakh · german (intermediate)</p>
       </div>
       <div class="cards" id="experience">
         <div class="ccard b rv"><h3><span>Experience</span><span>2020 — now</span></h3>
@@ -573,6 +603,37 @@ function run2(){
   $('#mh-stats').textContent=`exact jaccard ${jac.toFixed(2)} · minhash ${est.toFixed(2)} (${m}/${K}) · ${verdict}`}
 $('#mh-a').addEventListener('input',run2);$('#mh-b').addEventListener('input',run2);
 
+/* ---------- me: portrait as matrix glyphs ---------- */
+const MEB='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',MN=44;
+const meG=Uint8Array.from(atob(MEB),c=>c.charCodeAt(0));
+const meC=$('#me');let mx=meC.getContext('2d'),MW=0;const visMe=onVisible(meC);
+const MGL='ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜ0123456789Z:=+*<>';
+const meCh=Array.from({length:MN*MN},()=>(Math.random()*MGL.length)|0);
+const drops=Array.from({length:14},()=>({c:(Math.random()*MN)|0,y:Math.random()*MN,v:.15+Math.random()*.35}));
+let meMouse=null,meT0=performance.now();
+$('#me-cap').textContent=`me, in ${meG.filter(v=>v>0).length.toLocaleString('en')} glyphs`;
+function layoutMe(){const f=fitCanvas(meC);if(!f.w)return;mx=f.x;MW=f.w;drawMe(performance.now())}
+meC.addEventListener('pointermove',e=>{const r=meC.getBoundingClientRect();meMouse={x:(e.clientX-r.left)/r.width*MN,y:(e.clientY-r.top)/r.height*MN}});
+meC.addEventListener('pointerleave',()=>meMouse=null);
+let lastMe=0;
+function drawMe(now){
+  if(!MW)return;const cs=MW/MN;mx.fillStyle='#050806';mx.fillRect(0,0,MW,MW);
+  mx.font=`${Math.round(cs*1.05)}px "Geist Mono",monospace`;mx.textAlign='center';mx.textBaseline='middle';
+  const intro=Math.min(1,(now-meT0)/1800);
+  for(const d of drops){d.y+=d.v;if(d.y>MN+8){d.y=-Math.random()*10;d.c=(Math.random()*MN)|0;d.v=.15+Math.random()*.35}}
+  for(let j=0;j<MN;j++)for(let i=0;i<MN;i++){
+    const k=j*MN+i;let v=meG[k]/255;
+    if(Math.random()<.02)meCh[k]=(Math.random()*MGL.length)|0;
+    let rain=0,head=false;for(const d of drops)if(d.c===i){const dy=d.y-j;if(dy>=0&&dy<8){rain=Math.max(rain,1-dy/8);if(dy<1)head=true}}
+    if(meMouse){const dx=i-meMouse.x,dy=j-meMouse.y,d2=dx*dx+dy*dy;if(d2<30)v=Math.min(1,v+.5*(1-d2/30))}
+    if(j/MN>intro*1.25)v*=0;
+    let a=v>0?.14+.86*Math.pow(v,1.7):rain*.28;if(v>0)a=Math.min(1,a+rain*.35);
+    if(a<.04)continue;
+    mx.fillStyle=head?`rgba(220,255,230,${Math.min(1,a+.4)})`:`rgba(61,255,138,${a})`;
+    mx.fillText(MGL[meCh[k]],(i+.5)*cs,(j+.5)*cs)}
+}
+function loopMe(now){if(visMe.v&&now-lastMe>50){lastMe=now;drawMe(now)}requestAnimationFrame(loopMe)}
+
 /* ---------- contact: drifting dither noise ---------- */
 const nc=$('#noise');let nx=nc.getContext('2d'),NW=0,NH=0;const visN=onVisible(nc);
 function layoutN(){const f=fitCanvas(nc);if(!f.w)return;nx=f.x;NW=f.w;NH=f.h}
@@ -592,11 +653,11 @@ const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)retur
 document.querySelectorAll('.metric b').forEach(b=>cio.observe(b));
 
 /* ---------- boot ---------- */
-layout0();start1(...STARTS[0]);layout1();layoutN();run2();
-const sizes=new WeakMap();const ro=new ResizeObserver(es=>es.forEach(e=>{const w=Math.round(e.contentRect.width);if(sizes.get(e.target)===w)return;sizes.set(e.target,w);clearTimeout(e.target._rz);e.target._rz=setTimeout(()=>e.target===cv?layout0():e.target===oc?layout1():layoutN(),120)}));[cv,oc,nc].forEach(c=>ro.observe(c));
+layoutMe();layout0();start1(...STARTS[0]);layout1();layoutN();run2();
+const sizes=new WeakMap();const ro=new ResizeObserver(es=>es.forEach(e=>{const w=Math.round(e.contentRect.width);if(sizes.get(e.target)===w)return;sizes.set(e.target,w);clearTimeout(e.target._rz);e.target._rz=setTimeout(()=>e.target===cv?layout0():e.target===oc?layout1():e.target===meC?layoutMe():layoutN(),120)}));[cv,oc,nc,meC].forEach(c=>ro.observe(c));
 matchMedia('(prefers-color-scheme:dark)').addEventListener('change',drawAll);
-if(!reduceMotion){requestAnimationFrame(loop0);requestAnimationFrame(loop1);requestAnimationFrame(loopN)}
-else{for(let i=0;i<STEPS;i++){t1++;for(const s of runs){OPT[s.k].step(s,gR(s.x,s.y),t1);if(t1%2===0)s.path.push([s.x,s.y])}}draw1(0)}
+if(!reduceMotion){requestAnimationFrame(loopMe);requestAnimationFrame(loop0);requestAnimationFrame(loop1);requestAnimationFrame(loopN)}
+else{meT0=-1e9;drawMe(0);for(let i=0;i<STEPS;i++){t1++;for(const s of runs){OPT[s.k].step(s,gR(s.x,s.y),t1);if(t1%2===0)s.path.push([s.x,s.y])}}draw1(0)}
 </script>
 </body>
 </html>
