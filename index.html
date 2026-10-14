@@ -1,85 +1,461 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Temirlan Zarymkanov — Work</title><link rel="stylesheet" href="tokens.css">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Temirlan Zarymkanov — AI engineer</title>
+<meta name="description" content="Temirlan Zarymkanov is an engineering lead who ships production AI and builds small, measured ML tools on the side.">
+<meta property="og:title" content="Temirlan Zarymkanov — AI engineer">
+<meta property="og:description" content="Production AI by day, small honest ML tools at night.">
+<meta property="og:image" content="https://temirlanzzz.github.io/img/al-hero.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23121211'/%3E%3Crect x='7' y='7' width='5' height='5' fill='%23ff5a1f'/%3E%3Crect x='14' y='7' width='11' height='5' fill='%23f4f3ef'/%3E%3Crect x='17' y='12' width='5' height='13' fill='%23f4f3ef'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <style>
-/* Built only on Designer DS tokens (tokens.css). Mobile first. */
+:root{
+  --bg:#f4f3ef;--surface:#eae8e2;--card:#fbfaf7;--ink:#121211;--ink-2:#55534d;--ink-3:#8a877f;
+  --line:#dcd9d1;--accent:#ff5a1f;--accent-ink:#c2410c;--shadow:0 1px 0 rgba(0,0,0,.04),0 12px 32px -12px rgba(0,0,0,.18);
+  --sans:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  --pad:16px;--max:1240px;--ease:cubic-bezier(.2,.7,.1,1);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d0d0c;--surface:#171715;--card:#121211;--ink:#ecebe6;--ink-2:#a3a199;--ink-3:#6f6d67;
+  --line:#262623;--accent:#ff6a33;--accent-ink:#ff8a5c;--shadow:0 1px 0 rgba(255,255,255,.03),0 16px 40px -16px rgba(0,0,0,.7);color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d0d0c;--surface:#171715;--card:#121211;--ink:#ecebe6;--ink-2:#a3a199;--ink-3:#6f6d67;
+  --line:#262623;--accent:#ff6a33;--accent-ink:#ff8a5c;--shadow:0 1px 0 rgba(255,255,255,.03),0 16px 40px -16px rgba(0,0,0,.7);color-scheme:dark}
+@media (min-width:720px){:root{--pad:32px}}
+
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:var(--ds-font-sans);font-size:var(--ds-text-body-size);line-height:var(--ds-text-body-line);background:var(--ds-color-bg-grouped);color:var(--ds-color-label-primary);-webkit-font-smoothing:antialiased}
-img,video{display:block;max-width:100%}
-a{color:var(--ds-color-link)}
-.wrap{max-width:var(--ds-size-page-max-width);margin:0 auto;padding:0 var(--ds-space-5)}
-nav{position:sticky;top:0;z-index:var(--ds-z-nav);background:var(--ds-material-chrome-bg);backdrop-filter:blur(var(--ds-material-chrome-blur));-webkit-backdrop-filter:blur(var(--ds-material-chrome-blur));border-bottom:1px solid var(--ds-color-separator)}
-nav .wrap{display:flex;justify-content:space-between;align-items:center;min-height:var(--ds-size-hit-target-min);font-size:var(--ds-text-subhead-size);line-height:var(--ds-text-subhead-line)}
-nav b{font-weight:var(--ds-text-headline-weight)}
-nav a{color:var(--ds-color-label-secondary);text-decoration:none;margin-left:var(--ds-space-5);display:inline-flex;align-items:center;min-height:var(--ds-size-hit-target-min)}
-.eyebrow{font-size:var(--ds-text-footnote-size);line-height:var(--ds-text-footnote-line);font-weight:600;color:var(--ds-color-accent)}
-.hero{padding:var(--ds-space-16) var(--ds-space-5) var(--ds-space-10)}
-.hero h1{font-family:var(--ds-font-display);font-size:var(--ds-text-large-title-size);line-height:var(--ds-text-large-title-line);font-weight:700;letter-spacing:-0.02em;margin:var(--ds-space-2) 0 0}
-.hero p{font-size:var(--ds-text-title-3-size);line-height:var(--ds-text-title-3-line);color:var(--ds-color-label-secondary);margin:var(--ds-space-4) 0 0}
-.grid{display:grid;grid-template-columns:1fr;gap:var(--ds-space-4);padding-bottom:var(--ds-space-12)}
-.card{display:block;text-decoration:none;color:inherit;background:var(--ds-color-bg-elevated);border-radius:var(--ds-radius-lg);overflow:hidden;box-shadow:var(--ds-elevation-1);transition:transform var(--ds-duration-moderate) var(--ds-ease-emphasized),box-shadow var(--ds-duration-moderate) var(--ds-ease-standard)}
-.card:hover{transform:translateY(calc(-1 * var(--ds-space-1)));box-shadow:var(--ds-elevation-3)}
-.card img{width:100%;aspect-ratio:16/10;object-fit:cover}
-.card div{padding:var(--ds-space-4)}
-.card b{font-size:var(--ds-text-headline-size);line-height:var(--ds-text-headline-line);font-weight:var(--ds-text-headline-weight)}
-.card p{margin:var(--ds-space-1) 0 0;font-size:var(--ds-text-subhead-size);line-height:var(--ds-text-subhead-line);color:var(--ds-color-label-secondary)}
-.case{padding:var(--ds-space-12) var(--ds-space-5);border-top:1px solid var(--ds-color-separator)}
-.case h2{font-family:var(--ds-font-display);font-size:var(--ds-text-title-1-size);line-height:var(--ds-text-title-1-line);font-weight:700;letter-spacing:-0.01em;margin:var(--ds-space-2) 0 var(--ds-space-3)}
-.lede{font-size:var(--ds-text-body-size);line-height:var(--ds-text-body-line);color:var(--ds-color-label-secondary);margin:0}
-.media,.ba{margin:var(--ds-space-6) 0;border-radius:var(--ds-radius-lg);overflow:hidden;background:var(--ds-color-bg-elevated);box-shadow:var(--ds-elevation-2)}
-.media img,.media video,.ba img{width:100%}
-.ba{position:relative}.ba .after{position:absolute;inset:0;clip-path:inset(0 0 0 50%)}.ba input{position:absolute;inset:0;width:100%;opacity:0;cursor:ew-resize}.ba .bar{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--ds-color-on-accent);box-shadow:var(--ds-elevation-2);pointer-events:none}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:var(--ds-space-3);margin:var(--ds-space-6) 0}
-.stat{background:var(--ds-color-bg-elevated);border-radius:var(--ds-radius-md);padding:var(--ds-space-4)}
-.stat b{display:block;font-family:var(--ds-font-display);font-size:var(--ds-text-title-2-size);line-height:var(--ds-text-title-2-line);font-weight:700}
-.stat span{font-size:var(--ds-text-footnote-size);line-height:var(--ds-text-footnote-line);color:var(--ds-color-label-secondary)}
-.story{display:grid;grid-template-columns:1fr;gap:var(--ds-space-3);margin-top:var(--ds-space-6)}
-.story>div{background:var(--ds-color-bg-elevated);border-radius:var(--ds-radius-md);padding:var(--ds-space-4)}
-.story h3{margin:0;font-size:var(--ds-text-footnote-size);line-height:var(--ds-text-footnote-line);font-weight:600;color:var(--ds-color-label-tertiary)}
-.story p{margin:var(--ds-space-1) 0 0;font-size:var(--ds-text-callout-size);line-height:var(--ds-text-callout-line)}
-.gallery{display:flex;gap:var(--ds-space-3);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:var(--ds-space-2)}
-.gallery img{height:calc(var(--ds-space-20) * 2.5);width:auto;max-width:none;border-radius:var(--ds-radius-md);scroll-snap-align:start;border:1px solid var(--ds-color-separator)}
-footer{padding:var(--ds-space-10) var(--ds-space-5);font-size:var(--ds-text-footnote-size);color:var(--ds-color-label-tertiary)}
-.reveal{opacity:0;transform:translateY(var(--ds-space-4));transition:opacity var(--ds-duration-slow) var(--ds-ease-decelerate),transform var(--ds-duration-slow) var(--ds-ease-decelerate)}.reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.reveal{transform:none;transition:opacity var(--ds-duration-fast) linear}.card:hover{transform:none}}
-@media (min-width:768px){
-.wrap,.hero,.case{padding-left:var(--ds-space-8);padding-right:var(--ds-space-8)}
-.hero{padding-top:var(--ds-space-20);padding-bottom:var(--ds-space-16)}
-.hero h1{font-size:calc(var(--ds-text-large-title-size) * 2);line-height:1.05}
-.case{padding-top:var(--ds-space-20);padding-bottom:var(--ds-space-20)}
-.case h2{font-size:calc(var(--ds-text-large-title-size) * 1.4);line-height:1.1}
-.lede{font-size:var(--ds-text-title-3-size);line-height:var(--ds-text-title-3-line)}
-.grid{grid-template-columns:repeat(2,1fr);gap:var(--ds-space-5)}
-.stats{grid-template-columns:repeat(auto-fit,minmax(calc(var(--ds-space-20) * 2),1fr))}
-.story{grid-template-columns:1fr 1fr}
-.gallery img{height:calc(var(--ds-space-20) * 4)}}
-@media (min-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
-</style></head><body>
-<nav><div class="wrap"><b>Temirlan</b><div><a href="#work">Work</a><a href="#about">About</a></div></div></nav>
-<header class="hero wrap reveal"><div class="eyebrow">Temirlan Zarymkanov</div><h1>I ship production AI by day and build small tools at night.</h1><p>Software engineering lead in AI and ML. Every project here has a live demo.</p></header><section id="work" class="wrap grid"><a class="card reveal" href="#graft"><img src="assets/graft/screenshots/09-preview-after.png" alt="Graft" loading="lazy"><div><b>Graft</b><p>Restyle any website with a prompt</p></div></a><a class="card reveal" href="#tracer"><img src="assets/tracer/03-origin-graph-timeline-desktop-dark.png" alt="Tracer" loading="lazy"><div><b>Tracer</b><p>Find where text really came from</p></div></a><a class="card reveal" href="#active-learning"><img src="assets/active-learning/hero.png" alt="Label Less" loading="lazy"><div><b>Label Less</b><p>90% accuracy with 80 labels, not 150</p></div></a><a class="card reveal" href="#bg-studio"><img src="assets/bg-studio/hero.png" alt="Cutout" loading="lazy"><div><b>Cutout</b><p>On-device background removal in about 3 s</p></div></a><a class="card reveal" href="#fedlearn"><img src="assets/fedlearn/hero.png" alt="FedAvg, live" loading="lazy"><div><b>FedAvg, live</b><p>Watch skewed data hurt federated learning</p></div></a><a class="card reveal" href="#factcheck"><img src="assets/factcheck/hero.png" alt="pytest-facts" loading="lazy"><div><b>pytest-facts</b><p>Unit tests for LLM answers</p></div></a></section>
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+img,video,canvas{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+::selection{background:var(--accent);color:#fff}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.01em;text-transform:lowercase}
+.muted{color:var(--ink-3)}
 
-<section id="graft" class="case wrap reveal"><div class="eyebrow">01 — Chrome extension</div><h2>Restyle any website, one element at a time.</h2>
-<p class="lede">Pick any element, describe the change in plain words, and see it restyled live. The change is saved per site.</p>
-<div class="media"><video src="assets/graft/graft-demo.mp4" autoplay muted loop playsinline></video></div>
-<div class="ba" aria-label="Before and after drag comparison"><img src="assets/graft/screenshots/10-preview-before.png" alt="Before"><img class="after" src="assets/graft/screenshots/09-preview-after.png" alt="After"><div class="bar"></div><input type="range" min="0" max="100" value="50" aria-label="Compare before and after"></div>
-<div class="stats"><div class="stat"><b>22/22</b><span>end-to-end checks pass</span></div><div class="stat"><b>MV3</b><span>Manifest V3 extension</span></div><div class="stat"><b>Per-site</b><span>styles saved and reapplied on load</span></div></div>
-<div class="story"><div><h3>Problem</h3><p>Sites look the way their owners want, not the way I want. Custom CSS is slow and breaks whenever the markup changes.</p></div><div><h3>What I learned</h3><p>Never let the model write code. Graft only accepts a whitelisted set of scoped CSS and a few allowed DOM operations, and everything else is sanitized. That's what makes it safe to run on any site. Host pages also fight your UI: even inside a Shadow DOM, site CSS overrode my panel, so I switched to explicit styles and a solid background. And every LLM call needs a timeout and an error message a person can read.</p></div></div>
-<div class="gallery"><img src="assets/graft/screenshots/06-picker-hover.png" alt="Picker hover"><img src="assets/graft/screenshots/07-prompt-panel.png" alt="Prompt panel"><img src="assets/graft/screenshots/11-accepted-confetti.png" alt="Accepted"><img src="assets/graft/screenshots/13-popup-list.png" alt="Saved grafts"><img src="assets/graft/screenshots/01-onboarding-welcome.png" alt="Onboarding"></div></section>
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.01em}
+.logo i{width:9px;height:9px;background:var(--accent);display:block}
+.nav ul{display:flex;align-items:center;gap:22px;list-style:none;margin:0;padding:0}
+.nav li a,.nav li button{color:var(--ink-2);font-size:14px;transition:color .2s}
+.nav li a:hover,.nav li button:hover{color:var(--ink)}
+.clock{color:var(--ink-3)}
+.theme{width:28px;height:28px;display:grid;place-items:center;border-radius:50%}
+.theme svg{width:16px;height:16px}
+@media (max-width:719px){.nav .hide-sm{display:none}.nav ul{gap:16px}}
 
-<section id="tracer" class="case wrap reveal"><div class="eyebrow">02 — Content provenance</div><h2>Find where a piece of text really came from.</h2>
-<p class="lede">Paste text, and the Tracer finds its copies, dates the original and links the evidence.</p>
-<div class="media"><video src="assets/tracer/tracer-demo.mp4" autoplay muted loop playsinline></video></div>
-<div class="stats"><div class="stat"><b>12</b><span>pages checked</span></div><div class="stat"><b>2 + 3</b><span>exact copies + near-duplicates</span></div><div class="stat"><b>1998</b><span>original dated to pemberley.com</span></div><div class="stat"><b>15/15</b><span>tests pass</span></div></div>
-<div class="gallery"><img src="assets/tracer/03-origin-graph-timeline-desktop-dark.png" alt="Origin graph"><img src="assets/tracer/04-evidence-cards-desktop-dark.png" alt="Evidence cards"><img src="assets/tracer/01-results-summary-desktop-light.png" alt="Summary"><img src="assets/tracer/06-evidence-mobile-dark.png" alt="Mobile"></div>
-<div class="story"><div><h3>What I learned</h3><p>Page metadata lies. For the same text it pointed to a page from 2024, while the Wayback Machine showed the source was 26 years older. Independent evidence beats what a page says about itself.</p></div></div>
-</section>
-<section id="active-learning" class="case wrap reveal"><div class="eyebrow">03 — ML · Active learning</div><h2>Label less, learn the same.</h2><p class="lede">Two identical classifiers start from the same 10 labels. One gets random images, and the other asks for the ones it's least sure about.</p><div class="media"><video src="assets/active-learning/active-learning-demo.mp4" autoplay muted loop playsinline></video></div><div class="stats"><div class="stat"><b>80</b><span>labels to reach 90%</span></div><div class="stat"><b>150</b><span>labels picked at random</span></div><div class="stat"><b>0</b><span>dependencies, all in the browser</span></div></div><div class="story"><div><h3>Problem</h3><p>Labeling is the expensive part of ML. I cut it by 90% at work with active learning, and I wanted to show the mechanism live.</p></div><div><h3>What I learned</h3><p>Uncertainty sampling isn't a free win. With only 10 labels the model's own uncertainty is unreliable, and entropy sampling lost to random on one seed. Testing several seeds made margin sampling the default. My first full-label baseline was also undertrained, which made active learning look better than it was. Training it to convergence fixed the comparison.</p></div></div></section><section id="bg-studio" class="case wrap reveal"><div class="eyebrow">04 — CV · On-device</div><h2>Cut out the subject. Nothing uploaded.</h2><p class="lede">Drop a photo and a 44 MB segmentation network removes the background in your browser, then you swap it.</p><div class="media"><video src="assets/bg-studio/bg-studio-demo.mp4" autoplay muted loop playsinline></video></div><div class="media"><img src="assets/bg-studio/before-after.png" alt="Before and after" loading="lazy"></div><div class="stats"><div class="stat"><b>2.6–4.2 s</b><span>per photo on the device</span></div><div class="stat"><b>44 MB</b><span>int8 model, open weights</span></div><div class="stat"><b>0</b><span>uploads</span></div></div><div class="story"><div><h3>Problem</h3><p>Most background removers upload your photo to someone's server. I wanted one that does it all in the browser.</p></div><div><h3>What I learned</h3><p>Serving headers mattered more than the model. Without cross-origin isolation, WASM runs on a single thread, and two response headers made it 3× faster. Some failures were also silent, like local models being disabled by default and a wrong input name. Capturing page errors in the test harness was the only way to find them.</p></div></div></section><section id="fedlearn" class="case wrap reveal"><div class="eyebrow">05 — ML · Federated learning</div><h2>Train together, share only weights.</h2><p class="lede">Eight clients keep private data and train one model with FedAvg. A slider adds label skew so you can watch non-IID data hurt.</p><div class="media"><video src="assets/fedlearn/fedlearn-demo.mp4" autoplay muted loop playsinline></video></div><div class="media"><img src="assets/fedlearn/before-after.png" alt="Before and after" loading="lazy"></div><div class="stats"><div class="stat"><b>8</b><span>clients</span></div><div class="stat"><b>90.8%</b><span>FedAvg under heavy skew</span></div><div class="stat"><b>97.6%</b><span>with all data in one place</span></div></div><div class="story"><div><h3>Problem</h3><p>Sensitive data, like medical records, can't be pooled in one place. Federated learning trains on it anyway, but it's hard to picture what that costs.</p></div><div><h3>What I learned</h3><p>Federated learning protects privacy, not bandwidth. On a small dataset the weights sent around were 55× bigger than the data itself. And uneven data is the real story: averaging still builds a decent model from clients that are only 33% accurate on their own, but it trails centralized training by about 7 points.</p></div></div></section><section id="factcheck" class="case wrap reveal"><div class="eyebrow">06 — LLM · Evaluation</div><h2>Unit tests for LLM answers.</h2><p class="lede">Write claims as assert lines and each one is checked against your source. The output reads like pytest: PASS, FAIL or SKIP.</p><div class="media"><video src="assets/factcheck/factcheck-demo.mp4" autoplay muted loop playsinline></video></div><div class="stats"><div class="stat"><b>9/10</b><span>claims right on held-out tests</span></div><div class="stat"><b>~1 s</b><span>per run</span></div><div class="stat"><b>0</b><span>API keys or servers</span></div></div><div class="story"><div><h3>Problem</h3><p>LLMs state wrong facts with confidence. I wanted to check answers against a source the way I test code.</p></div><div><h3>What I learned</h3><p>Pronouns break sentence-level checking. "It was first released in 1991" didn't support "Python was first released in 1991" until each piece of evidence included the sentence before it, and that one change fixed two wrong verdicts. A naive sentence splitter also cut "Python 3.0" in half.</p></div></div></section><section id="about" class="case wrap reveal"><div class="eyebrow">About</div><h2>Production first.</h2>
-<div class="stats"><div class="stat"><b>+20%</b><span>user revenue at Adigy.ai</span></div><div class="stat"><b>−35%</b><span>infrastructure cost at Adigy.ai</span></div><div class="stat"><b>−90%</b><span>labeling cost at Sewts</span></div><div class="stat"><b>2 mo</b><span>MVP shipped at Fleek</span></div><div class="stat"><b>2</b><span>peer-reviewed papers</span></div></div>
-<div class="story"><div><h3>Now</h3><p>I lead engineering at Adigy.ai, where we manage Amazon ads. There I raised user revenue by 20% with a new bid-optimization system and cut infrastructure cost by 35%.</p></div><div><h3>Before</h3><p>I built ML pipelines for textile robotics at Sewts. Active learning cut labeling costs by 90%, and a diffusion model doubled our training data.</p></div><div><h3>Education</h3><p>MSc in Data Analytics, University of Hildesheim. BSc in Computer Science, Nazarbayev University.</p></div></div>
+/* hero */
+.hero{padding-top:72px;padding-bottom:28px}
+.status{display:inline-flex;align-items:center;gap:8px;color:var(--ink-2)}
+.status b{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:ping 2.4s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(34,197,94,.45)}70%,100%{box-shadow:0 0 0 7px rgba(34,197,94,0)}}
+h1{font-weight:500;font-size:clamp(34px,6.4vw,84px);line-height:1.02;letter-spacing:-.045em;margin:22px 0 0;max-width:15.5em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--ink-3)}
+.hero .sub{max-width:36em;margin:26px 0 0;color:var(--ink-2);font-size:clamp(16px,1.6vw,19px);line-height:1.5}
 
-<p><a href="https://github.com/temirlanzzz">GitHub</a> · <a href="https://linkedin.com/in/temirlan-zarymkanov">LinkedIn</a> · <a href="mailto:temirlan.zarymkanov@gmail.com">Email</a></p></section>
-<footer class="wrap">© 2026 Temirlan Zarymkanov</footer>
+/* fig. 0 digit field */
+.field{margin:56px 0 0;border-top:1px solid var(--line);position:relative}
+.field canvas{width:100%;height:150px;cursor:crosshair;touch-action:pan-y}
+.field-cap{display:flex;justify-content:space-between;gap:6px 16px;padding:10px 0;border-top:1px dashed var(--line);flex-wrap:wrap}
+.field-cap .acc{color:var(--accent-ink)}
+@media (min-width:720px){.field canvas{height:184px}}
+
+/* metrics */
+.metrics{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.metric{padding:22px 16px 24px 0}
+.metric:nth-child(even){padding-left:16px;border-left:1px solid var(--line)}
+.metric:nth-child(n+3){border-top:1px solid var(--line)}
+.metric b{display:block;font-weight:500;font-size:clamp(30px,4vw,44px);letter-spacing:-.04em;line-height:1}
+.metric span{display:block;margin-top:10px;color:var(--ink-2);font-size:14px;line-height:1.4}
+.metric .mono{margin-top:6px;color:var(--ink-3);font-size:12px}
+@media (min-width:860px){
+  .metrics{grid-template-columns:repeat(4,1fr)}
+  .metric{padding:28px 20px 30px;border-top:0!important}
+  .metric+.metric{border-left:1px solid var(--line)}
+  .metric:first-child{padding-left:0}}
+
+/* sections */
+.sec{padding-top:96px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:28px}
+.sec-head h2{font-weight:500;font-size:clamp(26px,3vw,36px);letter-spacing:-.035em;margin:0;line-height:1.1}
+.sec-head h2 sup{font-family:var(--mono);font-size:12px;color:var(--ink-3);letter-spacing:0;margin-left:6px;position:relative;top:-2px}
+
+/* work grid */
+.grid{display:grid;gap:14px;grid-template-columns:1fr}
+@media (min-width:720px){.grid{grid-template-columns:repeat(6,1fr);gap:16px}.c-a,.c-b,.c-c,.c-d{grid-column:span 3}.c-e,.c-f{grid-column:span 3}}
+@media (min-width:1000px){.c-a{grid-column:span 4}.c-b{grid-column:span 2}.c-c,.c-d,.c-e{grid-column:span 2}.c-f{grid-column:span 6}}
+.card{position:relative;display:flex;flex-direction:column;text-align:left;width:100%;background:var(--surface);border-radius:14px;overflow:hidden;isolation:isolate}
+.card .shot{position:relative;flex:1;min-height:220px;padding:46px 22px 0;display:flex;align-items:flex-end;overflow:hidden}
+.card .frame{position:relative;width:100%;aspect-ratio:16/10;border-radius:8px 8px 0 0;overflow:hidden;background:var(--card);box-shadow:var(--shadow);transform:translateY(8px);transition:transform .7s var(--ease)}
+.card .frame img,.card .frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
+.card .frame video{opacity:0;transition:opacity .4s}
+.card.playing .frame video{opacity:1}
+.card:hover .frame{transform:translateY(0) scale(1.015)}
+.card .meta{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding:18px 22px 20px;border-top:1px solid var(--line)}
+.card h3{margin:0;font-weight:500;font-size:19px;letter-spacing:-.02em;line-height:1.2}
+.card p{margin:4px 0 0;color:var(--ink-2);font-size:14px;line-height:1.4}
+.card .kpi{text-align:right;flex:none}
+.card .kpi b{display:block;font-weight:500;font-size:20px;letter-spacing:-.03em;line-height:1}
+.card .kpi span{display:block;margin-top:5px}
+.card .idx{position:absolute;top:17px;left:22px;z-index:2;color:var(--ink-3)}
+.card .open{position:absolute;top:10px;right:10px;z-index:2;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--card);color:var(--ink);opacity:0;transform:scale(.8);transition:opacity .35s var(--ease),transform .35s var(--ease);box-shadow:var(--shadow)}
+.card:hover .open,.card:focus-visible .open{opacity:1;transform:none}
+@media (min-width:1000px){.c-a .shot,.c-b .shot{min-height:360px}.c-b .frame{aspect-ratio:auto;height:100%;min-height:280px}.c-f .frame{aspect-ratio:16/6}}
+.c-b .frame img{object-position:left top}
+
+/* also */
+.also{margin-top:56px;border-top:1px solid var(--line)}
+.also a{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:16px 0;border-bottom:1px solid var(--line);transition:padding .35s var(--ease),color .2s}
+.also a:hover{padding-left:10px;color:var(--accent-ink)}
+.also a span:first-child{font-weight:500}
+.also a .d{grid-column:1/-1;grid-row:2;color:var(--ink-2);font-size:14px}
+@media (min-width:720px){.also a{grid-template-columns:240px 1fr auto;align-items:baseline}.also a .d{grid-column:auto;grid-row:auto}}
+
+/* about */
+.about{display:grid;gap:40px}
+@media (min-width:900px){.about{grid-template-columns:5fr 7fr;gap:64px}}
+.about .lead{font-size:clamp(21px,2.3vw,28px);line-height:1.3;letter-spacing:-.025em;margin:0;text-wrap:balance}
+.about .lead span{color:var(--ink-3)}
+.about p{color:var(--ink-2);margin:18px 0 0}
+.xp{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.xp li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.xp .role{font-weight:500}
+.xp .where{color:var(--ink-3);text-align:right}
+.xp .what{grid-column:1/-1;color:var(--ink-2);font-size:15px}
+.xp .what b{color:var(--ink);font-weight:500}
+
+/* contact */
+.contact{padding-top:120px}
+.contact>.mono{color:var(--ink-3)}
+.big{display:inline-flex;align-items:center;gap:.2em;font-weight:500;font-size:clamp(48px,10vw,136px);letter-spacing:-.055em;line-height:.95;margin-top:18px;transition:color .25s}
+.big svg{width:.55em;height:.55em;transition:transform .45s var(--ease)}
+.big:hover{color:var(--accent)}
+.big:hover svg{transform:translate(.08em,-.08em)}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
+.pill{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border:1px solid var(--line);border-radius:999px;font-size:14px;color:var(--ink-2);transition:color .25s,border-color .25s;max-width:100%}
+.pill:hover{color:var(--ink);border-color:var(--ink-3)}
+.pill.copied{color:var(--accent-ink);border-color:var(--accent)}
+footer .wrap{display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;padding-top:20px;padding-bottom:28px}
+footer{margin-top:96px;border-top:1px solid var(--line)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* case dialog */
+dialog{padding:0;border:0;margin:0;max-width:none;max-height:none;width:100%;height:100%;background:transparent;color:var(--ink)}
+dialog::backdrop{background:rgba(10,10,9,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.sheet{position:absolute;inset:12px 0 0;background:var(--bg);border-radius:18px 18px 0 0;overflow-y:auto;overscroll-behavior:contain;animation:up .55s var(--ease)}
+@media (min-width:900px){.sheet{inset:28px 28px 0}}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+dialog.closing .sheet{animation:down .28s ease-in forwards}
+@keyframes down{to{transform:translateY(40px);opacity:0}}
+.sheet-bar{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;height:60px;padding:0 var(--pad);background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.sheet-bar .hide-sm{display:none}@media (min-width:600px){.sheet-bar .hide-sm{display:inline}}
+.sheet-bar .nx{display:flex;gap:6px;flex:none}
+.icon-btn{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);transition:border-color .2s;flex:none}
+.icon-btn:hover{border-color:var(--ink-3)}
+.icon-btn svg{width:16px;height:16px}
+.case{max-width:1080px;margin:0 auto;padding:48px var(--pad) 80px}
+.case h2{font-weight:500;font-size:clamp(32px,5vw,60px);letter-spacing:-.045em;line-height:1.02;margin:14px 0 0;max-width:14em;text-wrap:balance}
+.case .lede{color:var(--ink-2);font-size:clamp(17px,1.8vw,20px);max-width:38em;margin:20px 0 0}
+.case .hero-media{margin-top:40px;background:var(--surface);border-radius:14px;padding:clamp(12px,3vw,36px);overflow:hidden}
+.case .hero-media>video,.case .hero-media>img{width:100%;border-radius:8px;box-shadow:var(--shadow);background:var(--card)}
+.case .facts{display:grid;grid-template-columns:repeat(2,1fr);margin-top:40px;border-top:1px solid var(--line)}
+.case .facts div{padding:18px 16px 20px 0;border-bottom:1px solid var(--line)}
+.case .facts b{display:block;font-weight:500;font-size:28px;letter-spacing:-.035em;line-height:1}
+.case .facts span{display:block;margin-top:8px;color:var(--ink-2);font-size:14px;line-height:1.35}
+@media (min-width:720px){.case .facts{grid-template-columns:repeat(4,1fr)}}
+.case .cols{display:grid;gap:32px;margin-top:48px}
+@media (min-width:720px){.case .cols{grid-template-columns:1fr 1fr;gap:48px}}
+.case h4{margin:0 0 10px;color:var(--ink-3);font-weight:400}
+.case .cols p{margin:0;font-size:17px;line-height:1.6}
+.case .cols p+p{margin-top:12px}
+.case .stack{margin-top:40px;padding:16px 20px;border:1px dashed var(--line);border-radius:10px;color:var(--ink-2);font-size:14px}
+.case .stack .mono{color:var(--ink-3);margin-right:10px}
+.case .gal{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:40px calc(var(--pad)*-1) 0;padding:0 var(--pad) 8px;scrollbar-width:thin}
+.case .gal img{height:clamp(240px,34vw,400px);width:auto;max-width:none;border-radius:10px;scroll-snap-align:start;border:1px solid var(--line);background:var(--card)}
+.ba{position:relative;margin-top:16px;border-radius:8px;overflow:hidden;box-shadow:var(--shadow);user-select:none;-webkit-user-select:none}
+.ba img{width:100%}
+.ba .after{position:absolute;inset:0;height:100%;object-fit:cover;clip-path:inset(0 0 0 50%)}
+.ba .bar{position:absolute;top:0;bottom:0;left:50%;width:2px;margin-left:-1px;background:var(--accent);pointer-events:none}
+.ba .bar::after{content:'';position:absolute;top:50%;left:50%;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M9 7l-5 5 5 5M15 7l5 5-5 5'/%3E%3C/svg%3E") center/18px no-repeat}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba .lbl{position:absolute;top:10px;padding:3px 8px;border-radius:6px;background:rgba(0,0,0,.62);color:#fff;pointer-events:none}
+.case .next{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:72px;padding-top:24px;border-top:1px solid var(--line);width:100%;text-align:left}
+.case .next b{display:block;font-weight:500;font-size:clamp(22px,3vw,34px);letter-spacing:-.035em;margin-top:6px;transition:color .2s}
+.case .next:hover b{color:var(--accent)}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Temirlan Zarymkanov, home"><i></i>temirlan</a>
+    <ul>
+      <li class="hide-sm"><span class="mono clock" id="clock">--:--</span></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li class="hide-sm"><a href="https://github.com/temirlanzzz" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><button class="theme" id="theme" aria-label="Toggle dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor"/></svg></button></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="top">
+  <header class="hero wrap">
+    <div class="status mono rv"><b></b>engineering lead · adigy.ai</div>
+    <h1 class="rv">Temirlan ships production AI by day <em>and builds small, honest ML tools at night.</em></h1>
+    <p class="sub rv">Software engineering lead in AI and ML. Before that, ML pipelines for textile robotics at Sewts. Every project below comes with measured numbers, including the ones that didn’t flatter me.</p>
+
+    <figure class="field rv">
+      <canvas id="digits" aria-label="Interactive illustration: a grid of pixel digits. The model labels the ones it is least sure about first, and moving your cursor labels them too." role="img"></canvas>
+      <figcaption class="field-cap mono"><span>fig. 0 — <span class="acc">hover to label.</span> the model asks for the digits it is least sure about.</span><span class="muted" id="digits-count">0 labeled</span></figcaption>
+    </figure>
+
+    <div class="metrics rv">
+      <div class="metric"><b>+20%</b><span>user revenue from a new bid-optimization system</span><span class="mono">adigy.ai</span></div>
+      <div class="metric"><b>−35%</b><span>infrastructure cost</span><span class="mono">adigy.ai</span></div>
+      <div class="metric"><b>−90%</b><span>labeling cost with active learning</span><span class="mono">sewts</span></div>
+      <div class="metric"><b>2</b><span>peer-reviewed papers</span><span class="mono">research</span></div>
+    </div>
+  </header>
+
+  <section id="work" class="sec wrap">
+    <div class="sec-head rv"><h2>Selected work<sup>06</sup></h2><span class="mono muted">open one for the write-up</span></div>
+    <div class="grid" id="grid"></div>
+
+    <div class="also rv">
+      <a href="https://github.com/temirlanzzz/harness-atlas" target="_blank" rel="noopener"><span>Harness Atlas</span><span class="d">A visual map of AI harnesses: 12 parts, recipes by role, pains and maturity levels (EN/RU).</span><span class="mono muted">github ↗</span></a>
+      <a href="https://github.com/temirlanzzz/robot_pose_estimation" target="_blank" rel="noopener"><span>Robot pose estimation</span><span class="d">3D robot arm pose estimation with React and Three.js.</span><span class="mono muted">github ↗</span></a>
+      <a href="https://github.com/temirlanzzz/sentiment_prediction" target="_blank" rel="noopener"><span>Sentiment prediction</span><span class="d">A classifier trained on IMDB reviews, served with FastAPI.</span><span class="mono muted">github ↗</span></a>
+    </div>
+  </section>
+
+  <section id="about" class="sec wrap">
+    <div class="sec-head rv"><h2>About</h2><span class="mono muted">production first</span></div>
+    <div class="about">
+      <div class="rv">
+        <p class="lead">I like the part after the demo works: <span>making it fast, cheap, measurable and boring enough to trust.</span></p>
+        <p>I lead engineering at Adigy.ai, where we manage Amazon ads. Outside work I build small tools that run in the browser, and I benchmark them across seeds before I believe them.</p>
+      </div>
+      <ul class="xp rv">
+        <li><span class="role">Engineering lead</span><span class="where mono">adigy.ai · now</span><span class="what">A new bid-optimization system raised user revenue by <b>20%</b>. Cut infrastructure cost by <b>35%</b>.</span></li>
+        <li><span class="role">ML engineer</span><span class="where mono">sewts</span><span class="what">ML pipelines for textile robotics. Active learning cut labeling cost by <b>90%</b>, and a diffusion model doubled the training data.</span></li>
+        <li><span class="role">Engineer</span><span class="where mono">fleek</span><span class="what">Shipped the MVP in <b>2 months</b>.</span></li>
+        <li><span class="role">MSc Data Analytics</span><span class="where mono">uni hildesheim</span></li>
+        <li><span class="role">BSc Computer Science</span><span class="where mono">nazarbayev university</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact" class="contact wrap">
+    <div class="mono rv">// open to interesting problems</div>
+    <a class="big rv" href="mailto:temirlan.zarymkanov@gmail.com">Say hello<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <div class="links rv">
+      <button class="pill" id="copy" data-email="temirlan.zarymkanov@gmail.com"><span class="mono">@</span><span id="copy-label">temirlan.zarymkanov@gmail.com</span></button>
+      <a class="pill" href="https://github.com/temirlanzzz" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="pill" href="https://linkedin.com/in/temirlan-zarymkanov" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap mono muted"><span>© 2026 temirlan zarymkanov</span><span>hand-built · no frameworks · no tracking</span></div></footer>
+
+<dialog id="case" aria-label="Project write-up"><div class="sheet" id="sheet"></div></dialog>
+
 <script>
-const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-document.querySelectorAll('.ba').forEach(b=>{const i=b.querySelector('input'),a=b.querySelector('.after'),bar=b.querySelector('.bar');i.oninput=()=>{a.style.clipPath=`inset(0 0 0 ${i.value}%)`;bar.style.left=i.value+'%'}});
-</script></body></html>
+/* ---------- data ---------- */
+const P=[
+{id:'graft',cls:'c-a',name:'Graft',kind:'chrome extension · llm',line:'Restyle any website with a prompt',kpi:['22/22','e2e checks'],
+ img:'img/graft-after.webp',video:'assets/graft/graft-demo.mp4',
+ title:'Restyle any website, one element at a time.',
+ lede:'Pick any element, describe the change in plain words, and see it restyled live. The change is saved per site and reapplied on load.',
+ facts:[['22/22','end-to-end checks pass'],['MV3','Manifest V3 extension'],['Per-site','styles saved and reapplied'],['0','lines of model-written code run']],
+ problem:['Sites look the way their owners want, not the way I want. Custom CSS is slow to write and breaks whenever the markup changes.'],
+ learned:['Never let the model write code. Graft only accepts a whitelisted set of scoped CSS and a few allowed DOM operations, and everything else is sanitized. That is what makes it safe to run on any site.','Host pages fight your UI: even inside a Shadow DOM, site CSS overrode my panel, so I switched to explicit styles and a solid background. And every LLM call needs a timeout and an error a person can read.'],
+ stack:'Chrome MV3 · Shadow DOM · LLM with a whitelisted op schema · CSS sanitizer',
+ ba:['img/graft-before.webp','img/graft-after.webp'],
+ gal:['img/graft-picker.webp','img/graft-prompt.webp','img/graft-confetti.webp','img/graft-popup.webp']},
+{id:'tracer',cls:'c-b',name:'Tracer',kind:'provenance',line:'Find where text really came from',kpi:['1998','true origin'],
+ img:'img/tracer-graph.webp',video:'assets/tracer/tracer-demo.mp4',
+ title:'Find where a piece of text really came from.',
+ lede:'Paste text, and the Tracer finds exact copies, near-duplicates and paraphrases, dates the original and shows evidence you can check yourself.',
+ facts:[['12','live pages checked'],['2 + 3','exact copies + near-duplicates'],['1998','origin dated via Wayback'],['15/15','tests pass']],
+ problem:['Copied text spreads faster than its source. Page metadata is the usual way to date it, and it is often wrong.'],
+ learned:['Page metadata lies. For a chapter of Pride and Prejudice it pointed to a page from 2024, while the Wayback Machine showed the source was first archived in 1998. Independent evidence beats what a page says about itself.','Caching matters: a cold run took 37 s, and about 6 s with the Wayback cache warm.'],
+ stack:'Python · FastAPI · MinHash 5-gram shingles · MiniLM embeddings · Wayback CDX · trafilatura · Docker',
+ gal:['img/tracer-evidence.webp','img/tracer-summary.webp','img/tracer-mobile.webp']},
+{id:'active-learning',cls:'c-c',name:'Label Less',kind:'ml · active learning',line:'90% accuracy with 80 labels, not 150',kpi:['−47%','labels'],
+ img:'img/al-hero.webp',video:'assets/active-learning/active-learning-demo.mp4',
+ title:'Label less, learn the same.',
+ lede:'Two identical classifiers start from the same 10 labels. One is fed random images; the other asks for the ones it is least sure about. A live curve races them.',
+ facts:[['80','labels to reach 90%, active'],['150','labels to reach 90%, random'],['92.1%','vs 88.1% at 100 labels'],['0','dependencies']],
+ problem:['Labeling is the expensive part of ML. I cut it by 90% at work with active learning, and I wanted to show the mechanism live, trained in the browser.'],
+ learned:['Uncertainty sampling is not a free win. With only 10 labels the model’s own uncertainty is unreliable, and entropy sampling lost to random on one seed. Testing five seeds and three strategies made margin sampling the default.','My first full-label baseline was undertrained, which made active learning look better than full supervision. Training it to convergence fixed a flattering but false comparison.'],
+ stack:'Vanilla JS · softmax regression from scratch · entropy / margin / least-confident · UCI digits (1,797 images)',
+ gal:['img/al-mobile.webp']},
+{id:'bg-studio',cls:'c-d',name:'Cutout',kind:'cv · on-device',line:'Background removal, nothing uploaded',kpi:['~3 s','per photo'],
+ img:'img/bg-hero.webp',video:'assets/bg-studio/bg-studio-demo.mp4',
+ title:'Cut out the subject. Nothing uploaded.',
+ lede:'Drop a photo and a 44 MB segmentation network removes the background inside your browser. Then swap it for a colour, a gradient or a portrait blur.',
+ facts:[['2.6–4.2 s','per photo, CPU only'],['44 MB','int8 model, open weights'],['3×','faster from two headers'],['0','uploads']],
+ problem:['Most background removers upload your photo to someone’s server. I wanted one that does all of it on the device.'],
+ learned:['Serving headers mattered more than the model. Without cross-origin isolation, WASM runs on one thread; adding COOP/COEP took inference from 10.1 s to 3.4 s.','Some failures were silent: local models are disabled by default in the web build, and the export expected a different input name. Capturing page errors in the test harness was the only way to find them.'],
+ stack:'transformers.js v3 · ONNX Runtime Web (WASM, threaded) · ISNet / open RMBG · canvas compositing',
+ wide:'img/bg-ba.webp',gal:['img/bg-mobile.webp']},
+{id:'fedlearn',cls:'c-e',name:'FedAvg, live',kind:'ml · federated',line:'Watch skewed data hurt federated learning',kpi:['90.8%','under skew'],
+ img:'img/fl-hero.webp',video:'assets/fedlearn/fedlearn-demo.mp4',
+ title:'Train together, share only weights.',
+ lede:'Eight clients keep private slices of data and train one shared model with Federated Averaging. A slider adds label skew so you can watch non-IID data hurt.',
+ facts:[['95.0%','FedAvg, IID data'],['90.8%','FedAvg, fully skewed'],['33%','local-only models, skewed'],['55×','more bytes sent than data kept']],
+ problem:['Sensitive data, like medical records, cannot be pooled in one place. Federated learning trains on it anyway, but it is hard to picture what that costs.'],
+ learned:['Federated learning protects privacy, not bandwidth. On a small dataset the weights sent around were 55× bigger than the raw data itself.','Uneven data is the real story. Averaging still builds a decent model from clients that are only 33% accurate on their own, but it trails centralized training by about 7 points.'],
+ stack:'Vanilla JS/SVG · 64→32→10 MLP with backprop from scratch · FedAvg weighted by sample count',
+ wide:'img/fl-ba.webp',gal:['img/fl-mobile.webp']},
+{id:'factcheck',cls:'c-f',name:'pytest-facts',kind:'llm · evaluation',line:'Unit tests for LLM answers',kpi:['9/10','held-out claims'],
+ img:'img/fc-hero.webp',video:'assets/factcheck/factcheck-demo.mp4',
+ title:'Unit tests for LLM answers.',
+ lede:'Write claims as assert lines and each one is checked against your source. Retrieval finds the evidence, an NLI model decides, and the output reads like pytest: PASS, FAIL or SKIP.',
+ facts:[['9/10','correct on held-out claims'],['~1 s','per 8-claim run'],['115 MB','models, all on-device'],['0','API keys or servers']],
+ problem:['LLMs state wrong facts with confidence. I wanted to check answers against a source the same way I test code.'],
+ learned:['Pronouns break sentence-level checking. “It was first released in 1991” did not support “Python was first released in 1991” until each piece of evidence included the sentence before it. That one change fixed two wrong verdicts.','A naive sentence splitter cut “Python 3.0” in half. And the one held-out miss: it called an unsupported claim false instead of skipping it.'],
+ stack:'transformers.js · all-MiniLM-L6-v2 retrieval · nli-deberta-v3-xsmall cross-encoder (int8 ONNX)',
+ gal:['img/fc-mobile.webp']}
+];
+
+const $=s=>document.querySelector(s);
+const pad=i=>String(i+1).padStart(2,'0');
+const arrow='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+
+/* ---------- grid ---------- */
+$('#grid').innerHTML=P.map((p,i)=>`
+<button class="card ${p.cls} rv" data-id="${p.id}" aria-label="${p.name}: ${p.line}. Open write-up">
+  <span class="idx mono">${pad(i)} — ${p.kind}</span>
+  <span class="open">${arrow}</span>
+  <span class="shot"><span class="frame"><img src="${p.img}" alt="" loading="lazy" decoding="async"><video muted loop playsinline preload="none" data-src="${p.video}"></video></span></span>
+  <span class="meta"><span><h3>${p.name}</h3><p>${p.line}</p></span><span class="kpi"><b>${p.kpi[0]}</b><span class="mono muted">${p.kpi[1]}</span></span></span>
+</button>`).join('');
+
+const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+document.querySelectorAll('.card').forEach(c=>{
+  c.onclick=()=>openCase(c.dataset.id);
+  if(!fine)return;
+  const v=c.querySelector('video');
+  c.addEventListener('mouseenter',()=>{if(!v.src)v.src=v.dataset.src;v.play().then(()=>c.classList.add('playing')).catch(()=>{})});
+  c.addEventListener('mouseleave',()=>{c.classList.remove('playing');setTimeout(()=>v.pause(),300)});
+});
+
+/* ---------- case dialog ---------- */
+const dlg=$('#case'),sheet=$('#sheet');
+const ic=d=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="${d}"/></svg>`;
+function caseHTML(p){
+  const i=P.indexOf(p),n=P[(i+1)%P.length],pv=P[(i+P.length-1)%P.length];
+  return `<div class="sheet-bar"><span class="mono muted">${pad(i)} / 06<span class="hide-sm"> — ${p.kind}</span></span>
+  <span class="nx"><button class="icon-btn" data-go="${pv.id}" aria-label="Previous project">${ic('M15 6l-6 6 6 6')}</button><button class="icon-btn" data-go="${n.id}" aria-label="Next project">${ic('M9 6l6 6-6 6')}</button><button class="icon-btn" data-close aria-label="Close">${ic('M6 6l12 12M18 6 6 18')}</button></span></div>
+  <article class="case">
+    <div class="mono muted">${p.name}</div>
+    <h2>${p.title}</h2>
+    <p class="lede">${p.lede}</p>
+    <div class="hero-media"><video src="${p.video}" poster="${p.img}" autoplay muted loop playsinline controls></video>
+      ${p.ba?`<div class="ba"><img src="${p.ba[0]}" alt="Before"><img class="after" src="${p.ba[1]}" alt="After"><span class="lbl mono" style="left:10px">before</span><span class="lbl mono" style="right:10px">after</span><div class="bar"></div><input type="range" min="0" max="100" value="50" aria-label="Drag to compare before and after"></div>`:''}
+      ${p.wide?`<img src="${p.wide}" alt="Result comparison" loading="lazy" style="margin-top:16px">`:''}
+    </div>
+    <div class="facts">${p.facts.map(f=>`<div><b>${f[0]}</b><span>${f[1]}</span></div>`).join('')}</div>
+    <div class="cols"><div><h4 class="mono">problem</h4>${p.problem.map(t=>`<p>${t}</p>`).join('')}</div><div><h4 class="mono">what i learned</h4>${p.learned.map(t=>`<p>${t}</p>`).join('')}</div></div>
+    <div class="stack"><span class="mono">stack</span>${p.stack}</div>
+    ${p.gal?.length?`<div class="gal">${p.gal.map(g=>`<img src="${g}" alt="${p.name} screenshot" loading="lazy">`).join('')}</div>`:''}
+    <button class="next" data-go="${n.id}"><span><span class="mono muted">next project</span><b>${n.name} — ${n.line}</b></span><span class="icon-btn">${ic('M5 12h14M13 6l6 6-6 6')}</span></button>
+  </article>`;
+}
+let closing=null;
+function openCase(id,push=true){
+  const p=P.find(x=>x.id===id);if(!p)return;
+  if(closing){clearTimeout(closing);closing=null;dlg.classList.remove('closing')}
+  sheet.innerHTML=caseHTML(p);sheet.scrollTop=0;
+  const ba=sheet.querySelector('.ba');
+  if(ba){const r=ba.querySelector('input'),a=ba.querySelector('.after'),b=ba.querySelector('.bar');r.oninput=()=>{a.style.clipPath=`inset(0 0 0 ${r.value}%)`;b.style.left=r.value+'%'}}
+  if(!dlg.open){dlg.showModal();document.body.style.overflow='hidden'}
+  sheet.querySelector('[data-close]').focus({preventScroll:true});
+  if(push&&location.hash!=='#'+id)history.pushState(null,'','#'+id);
+}
+function closeCase(push=true){
+  if(!dlg.open||closing)return;
+  dlg.classList.add('closing');
+  closing=setTimeout(()=>{closing=null;dlg.classList.remove('closing');dlg.close();sheet.innerHTML='';document.body.style.overflow=''},260);
+  if(push&&P.some(p=>'#'+p.id===location.hash))history.pushState(null,'',location.pathname+location.search);
+}
+sheet.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)return openCase(g.dataset.go);if(e.target.closest('[data-close]'))closeCase()});
+dlg.addEventListener('click',e=>{if(e.target===dlg)closeCase()});
+dlg.addEventListener('cancel',e=>{e.preventDefault();closeCase()});
+const route=()=>{const id=location.hash.slice(1);P.some(p=>p.id===id)?openCase(id,false):closeCase(false)};
+addEventListener('popstate',route);route();
+
+/* ---------- reveal ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.rv').forEach(el=>{if(el.classList.contains('card'))el.style.transitionDelay=([...el.parentNode.children].indexOf(el)%3)*70+'ms';io.observe(el)});
+
+/* ---------- theme, clock, copy ---------- */
+const root=document.documentElement;
+$('#theme').onclick=()=>{const dark=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;root.dataset.theme=dark?'light':'dark';try{localStorage.setItem('theme',root.dataset.theme)}catch(e){}drawAll()};
+const tick=()=>{$('#clock').textContent=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+' your time'};tick();setInterval(tick,15000);
+$('#copy').onclick=async e=>{const b=e.currentTarget,l=$('#copy-label');try{await navigator.clipboard.writeText(b.dataset.email);b.classList.add('copied');l.textContent='copied to clipboard';setTimeout(()=>{b.classList.remove('copied');l.textContent=b.dataset.email},1600)}catch(_){location.href='mailto:'+b.dataset.email}};
+
+/* ---------- fig. 0: active-learning digit field ---------- */
+const F=['01110100011001110101110011000101110','00100011000010000100001000010001110','01110100010000100010001000100011111','11111000100010000010000011000101110','00010001100101010010111110001000010','11111100001111000001000011000101110','00110010001000011110100011000101110','11111000010001000100010000100001000','01110100011000101110100011000101110','01110100011000101111000010001001100'];
+const cv=$('#digits'),cx=cv.getContext('2d');
+const PX=2,CW=5*PX+11,CH=7*PX+13;
+let cells=[],W=0,H=0,mouse=null,labeled=0,colors={};
+function readColors(){const s=getComputedStyle(root);colors={ink:s.getPropertyValue('--ink').trim(),faint:s.getPropertyValue('--line').trim(),acc:s.getPropertyValue('--accent').trim()}}
+function layout(){
+  const r=cv.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);
+  W=r.width;H=r.height;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);
+  const cols=Math.floor(W/CW),rows=Math.floor(H/CH),ox=(W-cols*CW)/2+5,oy=(H-rows*CH)/2+6;
+  cells=[];labeled=0;
+  for(let y=0;y<rows;y++)for(let x=0;x<cols;x++)cells.push({x:ox+x*CW,y:oy+y*CH,d:(Math.random()*10)|0,conf:Math.random(),s:0,t:0});
+  count();drawAll();
+}
+function drawCell(c){
+  cx.clearRect(c.x-5,c.y-5,CW,CH);
+  if(c.s===1){cx.strokeStyle=colors.acc;cx.lineWidth=1;cx.strokeRect(c.x-3.5,c.y-3.5,5*PX+7,7*PX+7)}
+  cx.fillStyle=c.s===0?colors.faint:c.s===1?colors.acc:colors.ink;
+  const bits=F[c.d];
+  for(let i=0;i<35;i++)if(bits[i]==='1')cx.fillRect(c.x+(i%5)*PX,c.y+((i/5)|0)*PX,PX,PX);
+}
+function drawAll(){readColors();cx.clearRect(0,0,W,H);cells.forEach(drawCell)}
+function count(){$('#digits-count').textContent=`${labeled} / ${cells.length} labeled`}
+function query(c){if(c.s!==0)return;c.s=1;c.t=performance.now();labeled++;drawCell(c);count()}
+cv.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();mouse={x:e.clientX-r.left,y:e.clientY-r.top}});
+cv.addEventListener('pointerleave',()=>mouse=null);
+let last=0,visible=true;
+new IntersectionObserver(([e])=>visible=e.isIntersecting).observe(cv);
+function loop(now){
+  if(visible){
+    if(mouse)for(const c of cells)if(c.s===0){const dx=c.x+5-mouse.x,dy=c.y+7-mouse.y;if(dx*dx+dy*dy<1600)query(c)}
+    if(now-last>600){last=now;let best=null;for(const c of cells)if(c.s===0&&(!best||c.conf<best.conf))best=c;
+      if(best)query(best);else{cells.forEach(c=>{c.s=0;c.conf=Math.random();c.d=(Math.random()*10)|0});labeled=0;count();drawAll()}}
+    for(const c of cells)if(c.s===1&&now-c.t>900){c.s=2;drawCell(c)}
+  }
+  requestAnimationFrame(loop);
+}
+layout();
+addEventListener('resize',()=>{clearTimeout(window._rz);window._rz=setTimeout(layout,150)});
+matchMedia('(prefers-color-scheme:dark)').addEventListener('change',drawAll);
+if(matchMedia('(prefers-reduced-motion:reduce)').matches){cells.forEach(c=>{if(Math.random()<.4){c.s=2;labeled++}});count();drawAll()}else requestAnimationFrame(loop);
+</script>
+</body>
+</html>
