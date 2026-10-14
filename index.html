@@ -155,6 +155,21 @@ h1 em{font-style:normal;color:var(--ink-3)}
 .edu .row b{font-weight:500}
 .edu .row>span:not(.mono){color:var(--ink-2);font-size:15px}
 .pub b{transition:color .2s}.pub:hover b{color:var(--accent-ink)}
+.fig{margin:0 0 56px;border-top:1px solid var(--line)}
+.fig-top{display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;padding:12px 0;color:var(--ink-2);border-bottom:1px dashed var(--line)}
+.legend{display:flex;gap:14px;color:var(--ink-3)}
+.legend i{display:inline-block;width:10px;height:2px;margin-right:6px;vertical-align:middle}
+#opt{width:100%;height:260px;cursor:crosshair}
+@media (min-width:720px){#opt{height:340px}}
+.mh{display:grid;gap:12px;padding:16px 0}
+@media (min-width:720px){.mh{grid-template-columns:1fr 1fr;gap:16px}}
+.mh label{display:flex;flex-direction:column;gap:6px}
+.mh textarea{width:100%;resize:vertical;font:15px/1.5 var(--sans);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;outline:none;transition:border-color .2s}
+.mh textarea:focus{border-color:var(--ink-3)}
+.slots{display:grid;grid-template-columns:repeat(32,1fr);gap:3px;padding:4px 0 16px}
+@media (min-width:720px){.slots{grid-template-columns:repeat(64,1fr)}}
+.slots i{aspect-ratio:1;border-radius:2px;background:var(--line);transition:background .35s var(--ease),transform .35s var(--ease)}
+.slots i.on{background:var(--accent)}
 /* contact */
 .contact{padding-top:120px}
 .contact>.mono{color:var(--ink-3)}
@@ -228,6 +243,7 @@ dialog.closing .sheet{animation:down .28s ease-in forwards}
     <ul>
       <li class="hide-sm"><span class="mono clock" id="clock">--:--</span></li>
       <li><a href="#work">Work</a></li>
+      <li class="hide-sm"><a href="#lab">Lab</a></li>
       <li><a href="#about">About</a></li>
       <li class="hide-sm"><a href="#experience">Experience</a></li>
       <li class="hide-sm"><a href="https://github.com/temirlanzzz" target="_blank" rel="noopener">GitHub</a></li>
@@ -244,8 +260,8 @@ dialog.closing .sheet{animation:down .28s ease-in forwards}
     <p class="sub rv">Software engineering team lead in AI and ML, based in Almaty. Before that, ML pipelines for textile robotics at Sewts in Munich. Every project below comes with measured numbers, including the ones that didn’t flatter me.</p>
 
     <figure class="field rv">
-      <canvas id="digits" aria-label="Interactive illustration: a grid of pixel digits. The model labels the ones it is least sure about first, and moving your cursor labels them too." role="img"></canvas>
-      <figcaption class="field-cap mono"><span>fig. 0 — <span class="acc">hover to label.</span> the model asks for the digits it is least sure about.</span><span class="muted" id="digits-count">0 labeled</span></figcaption>
+      <canvas id="digits" aria-label="Interactive figure: a softmax classifier trained live on noisy pixel digits, using margin-based active learning. Moving the cursor labels digits too." role="img"></canvas>
+      <figcaption class="field-cap mono"><span>fig. 0 — a real classifier learning in your browser. it asks for the digits it is least sure about. <span class="acc">orange = still wrong.</span> hover to label some yourself.</span><span class="muted" id="digits-count"></span></figcaption>
     </figure>
 
     <div class="metrics rv">
@@ -265,6 +281,24 @@ dialog.closing .sheet{animation:down .28s ease-in forwards}
       <a href="https://github.com/temirlanzzz/robot_pose_estimation" target="_blank" rel="noopener"><span>Robot pose estimation</span><span class="d">3D robot arm pose estimation with React and Three.js.</span><span class="mono muted">github ↗</span></a>
       <a href="https://github.com/temirlanzzz/sentiment_prediction" target="_blank" rel="noopener"><span>Sentiment prediction</span><span class="d">A classifier trained on IMDB reviews, served with FastAPI.</span><span class="mono muted">github ↗</span></a>
     </div>
+  </section>
+
+  <section id="lab" class="sec wrap">
+    <div class="sec-head rv"><h2>Lab<sup>02</sup></h2><span class="mono muted">small things that actually compute</span></div>
+    <figure class="fig rv">
+      <div class="fig-top mono"><span>fig. 1 — three optimizers, one valley</span><span class="legend"><span><i style="background:var(--ink-3)"></i>sgd</span><span><i style="background:var(--ink)"></i>momentum</span><span><i style="background:var(--accent)"></i>adam</span></span></div>
+      <canvas id="opt" aria-label="Interactive chart: SGD, momentum and Adam descending the Rosenbrock function. Click to pick a new start point." role="img"></canvas>
+      <figcaption class="field-cap mono"><span><span class="acc">click anywhere to drop a start point.</span> rosenbrock function, real gradients, same start for all three.</span><span class="muted" id="opt-stats"></span></figcaption>
+    </figure>
+    <figure class="fig rv">
+      <div class="fig-top mono"><span>fig. 2 — minhash, the trick inside tracer</span><span class="muted">edit either text</span></div>
+      <div class="mh">
+        <label><span class="mono muted">text a</span><textarea id="mh-a" rows="3" spellcheck="false">It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.</textarea></label>
+        <label><span class="mono muted">text b</span><textarea id="mh-b" rows="3" spellcheck="false">It is a truth universally acknowledged that a single man in possession of a large fortune must be in want of a wife, or so the saying goes.</textarea></label>
+      </div>
+      <div class="slots" id="mh-slots" aria-hidden="true"></div>
+      <figcaption class="field-cap mono"><span>each text becomes 128 hash minimums over its word 3-grams. <span class="acc">matching slots</span> estimate the overlap without comparing the texts.</span><span class="muted" id="mh-stats"></span></figcaption>
+    </figure>
   </section>
 
   <section id="about" class="sec wrap">
@@ -477,47 +511,159 @@ $('#theme').onclick=()=>{const dark=root.dataset.theme?root.dataset.theme==='dar
 const tick=()=>{$('#clock').textContent='almaty '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Almaty'})};tick();setInterval(tick,15000);
 $('#copy').onclick=async e=>{const b=e.currentTarget,l=$('#copy-label');try{await navigator.clipboard.writeText(b.dataset.email);b.classList.add('copied');l.textContent='copied to clipboard';setTimeout(()=>{b.classList.remove('copied');l.textContent=b.dataset.email},1600)}catch(_){location.href='mailto:'+b.dataset.email}};
 
-/* ---------- fig. 0: active-learning digit field ---------- */
+/* ---------- shared figure helpers ---------- */
+const themeHooks=[];
+function css(v){return getComputedStyle(root).getPropertyValue(v).trim()}
+function hexRgb(h){h=h.replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');const n=parseInt(h,16);return[n>>16&255,n>>8&255,n&255]}
+function fitCanvas(c){const r=c.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);c.width=Math.round(r.width*d);c.height=Math.round(r.height*d);const x=c.getContext('2d');x.setTransform(d,0,0,d,0,0);return{w:r.width,h:r.height,d,x}}
+function onVisible(el){const st={v:false};new IntersectionObserver(([e])=>st.v=e.isIntersecting).observe(el);return st}
+function drawAll(){draw0();themeHooks.forEach(f=>f())}
+const reduceMotion=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* ---------- fig. 0: real active learning ----------
+   A softmax-regression classifier is trained in the browser on noisy 7x9 pixel digits.
+   Each tick it queries the unlabeled digit with the smallest margin between its top two
+   class probabilities (margin sampling), learns its label and retrains. */
 const F=['01110100011001110101110011000101110','00100011000010000100001000010001110','01110100010000100010001000100011111','11111000100010000010000011000101110','00010001100101010010111110001000010','11111100001111000001000011000101110','00110010001000011110100011000101110','11111000010001000100010000100001000','01110100011000101110100011000101110','01110100011000101111000010001001100'];
-const cv=$('#digits'),cx=cv.getContext('2d');
-const PX=2,CW=5*PX+11,CH=7*PX+13;
-let cells=[],W=0,H=0,mouse=null,labeled=0,colors={};
-function readColors(){const s=getComputedStyle(root);colors={ink:s.getPropertyValue('--ink').trim(),faint:s.getPropertyValue('--line').trim(),acc:s.getPropertyValue('--accent').trim()}}
-function layout(){
-  const r=cv.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);
-  W=r.width;H=r.height;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);
-  const cols=Math.floor(W/CW),rows=Math.floor(H/CH),ox=(W-cols*CW)/2+5,oy=(H-rows*CH)/2+6;
-  cells=[];labeled=0;
-  for(let y=0;y<rows;y++)for(let x=0;x<cols;x++)cells.push({x:ox+x*CW,y:oy+y*CH,d:(Math.random()*10)|0,conf:Math.random(),s:0,t:0});
-  count();drawAll();
-}
+const GW=7,GH=9,D=GW*GH+1,PX=2,CW=GW*PX+8,CH=GH*PX+8;
+const cv=$('#digits');let cx=cv.getContext('2d');
+let cells=[],W0=0,H0=0,mouse=null,Wt=[],acc=0,nLab=0,dirty=false,lastTrain=0,resetAt=0,col0={};
+const vis0=onVisible(cv);
+function sample(d){
+  const x=new Float32Array(D),ox=1,oy=Math.random()<.5?1:(Math.random()*3)|0;
+  for(let i=0;i<35;i++)if(F[d][i]==='1')x[(oy+((i/5)|0))*GW+ox+(i%5)]=.75+.25*Math.random();
+  for(let i=0;i<GW*GH;i++)if(Math.random()<.1)x[i]=x[i]>0?0:.4+.4*Math.random();
+  x[D-1]=1;return x}
+function probs(x){
+  const z=new Float32Array(10);let m=-1e9;
+  for(let k=0;k<10;k++){let s=0;const w=Wt[k];for(let i=0;i<D;i++)s+=w[i]*x[i];z[k]=s;if(s>m)m=s}
+  let t=0;for(let k=0;k<10;k++){z[k]=Math.exp(z[k]-m);t+=z[k]}for(let k=0;k<10;k++)z[k]/=t;return z}
+function train(){
+  const L=cells.filter(c=>c.s);
+  for(let it=0;it<40;it++){
+    const G=Array.from({length:10},()=>new Float32Array(D));
+    for(const c of L){const p=probs(c.x);for(let k=0;k<10;k++){const g=p[k]-(k===c.d?1:0),Gk=G[k];for(let i=0;i<D;i++)Gk[i]+=g*c.x[i]}}
+    for(let k=0;k<10;k++)for(let i=0;i<D;i++)Wt[k][i]-=.5*(G[k][i]/L.length+1e-3*Wt[k][i])}
+  let ok=0,n=0;
+  for(const c of cells){const p=probs(c.x);let a=0;for(let k=1;k<10;k++)if(p[k]>p[a])a=k;let b=a?0:1;for(let k=0;k<10;k++)if(k!==a&&p[k]>p[b])b=k;
+    c.pred=a;c.margin=p[a]-p[b];if(!c.s){n++;if(a===c.d)ok++}}
+  acc=n?ok/n:1;dirty=false}
+function newPool(){
+  Wt=Array.from({length:10},()=>new Float32Array(D));resetAt=0;
+  for(const c of cells){c.d=(Math.random()*10)|0;c.x=sample(c.d);c.s=0}
+  for(let d=0;d<10;d++){const c=cells.find(c=>c.d===d&&!c.s)||cells.find(c=>!c.s);if(c){c.s=2}}
+  nLab=cells.filter(c=>c.s).length;train();count0();draw0()}
+function layout0(){
+  const f=fitCanvas(cv);if(!f.w||!f.h)return;cx=f.x;W0=f.w;H0=f.h;
+  const cols=Math.floor(W0/CW),rows=Math.floor(H0/CH),ox=(W0-cols*CW)/2+4,oy=(H0-rows*CH)/2+4;
+  cells=[];for(let y=0;y<rows;y++)for(let x=0;x<cols;x++)cells.push({px:ox+x*CW,py:oy+y*CH});
+  newPool()}
 function drawCell(c){
-  cx.clearRect(c.x-5,c.y-5,CW,CH);
-  if(c.s===1){cx.strokeStyle=colors.acc;cx.lineWidth=1;cx.strokeRect(c.x-3.5,c.y-3.5,5*PX+7,7*PX+7)}
-  cx.fillStyle=c.s===0?colors.faint:c.s===1?colors.acc:colors.ink;
-  const bits=F[c.d];
-  for(let i=0;i<35;i++)if(bits[i]==='1')cx.fillRect(c.x+(i%5)*PX,c.y+((i/5)|0)*PX,PX,PX);
-}
-function drawAll(){readColors();cx.clearRect(0,0,W,H);cells.forEach(drawCell)}
-function count(){$('#digits-count').textContent=`${labeled} / ${cells.length} labeled`}
-function query(c){if(c.s!==0)return;c.s=1;c.t=performance.now();labeled++;drawCell(c);count()}
+  cx.clearRect(c.px-4,c.py-4,CW,CH);
+  if(c.s===1){cx.strokeStyle=col0.acc;cx.lineWidth=1;cx.strokeRect(c.px-3.5,c.py-3.5,GW*PX+7,GH*PX+7)}
+  const wrong=!c.s&&c.pred!==c.d;
+  cx.fillStyle=c.s===1||wrong?col0.acc:c.s?col0.ink:col0.ink3;
+  const base=c.s?1:wrong?.6:.4;
+  for(let i=0;i<GW*GH;i++){const v=c.x[i];if(v>0){cx.globalAlpha=base*(.35+.65*v);cx.fillRect(c.px+(i%GW)*PX,c.py+((i/GW)|0)*PX,PX,PX)}}
+  cx.globalAlpha=1}
+function draw0(){col0={ink:css('--ink'),ink3:css('--ink-3'),acc:css('--accent')};cx.clearRect(0,0,W0,H0);cells.forEach(drawCell)}
+function count0(){const left=cells.length-nLab;$('#digits-count').textContent=resetAt?`done: ${nLab} labels → ${(acc*100).toFixed(1)}% · reshuffling`:`${nLab} labels · ${(acc*100).toFixed(1)}% of the other ${left} right`}
+function query(c){if(c.s)return;c.s=1;c.t=performance.now();nLab++;dirty=true;drawCell(c)}
 cv.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();mouse={x:e.clientX-r.left,y:e.clientY-r.top}});
 cv.addEventListener('pointerleave',()=>mouse=null);
-let last=0,visible=true;
-new IntersectionObserver(([e])=>visible=e.isIntersecting).observe(cv);
-function loop(now){
-  if(visible){
-    if(mouse)for(const c of cells)if(c.s===0){const dx=c.x+5-mouse.x,dy=c.y+7-mouse.y;if(dx*dx+dy*dy<1600)query(c)}
-    if(now-last>600){last=now;let best=null;for(const c of cells)if(c.s===0&&(!best||c.conf<best.conf))best=c;
-      if(best)query(best);else{cells.forEach(c=>{c.s=0;c.conf=Math.random();c.d=(Math.random()*10)|0});labeled=0;count();drawAll()}}
-    for(const c of cells)if(c.s===1&&now-c.t>900){c.s=2;drawCell(c)}
+let last0=0;
+function loop0(now){
+  if(vis0.v){
+    if(resetAt){if(now>resetAt)newPool()}
+    else{
+      if(mouse)for(const c of cells)if(!c.s){const dx=c.px+7-mouse.x,dy=c.py+9-mouse.y;if(dx*dx+dy*dy<1500)query(c)}
+      if(now-last0>700){last0=now;let best=null;for(const c of cells)if(!c.s&&(!best||c.margin<best.margin))best=c;if(best)query(best)}
+      if(dirty&&now-lastTrain>150){lastTrain=now;train();draw0();
+        if(acc>=.995||nLab>=cells.length)resetAt=now+3500;count0()}
+      for(const c of cells)if(c.s===1&&now-c.t>900){c.s=2;drawCell(c)}
+    }
   }
-  requestAnimationFrame(loop);
-}
-layout();
-addEventListener('resize',()=>{clearTimeout(window._rz);window._rz=setTimeout(layout,150)});
+  requestAnimationFrame(loop0)}
+
+/* ---------- fig. 1: optimizer race on the Rosenbrock function ---------- */
+const oc=$('#opt');let ox=oc.getContext('2d'),OW=0,OH=0,base1=null;
+const XR=[-2,2],YR=[-1,3],STEPS=600;
+const fR=(x,y)=>(1-x)**2+100*(y-x*x)**2;
+const gR=(x,y)=>[-2*(1-x)-400*x*(y-x*x),200*(y-x*x)];
+const clip=(v,c)=>{const n=Math.hypot(v[0],v[1]);return n>c?[v[0]*c/n,v[1]*c/n]:v};
+const toPx=(x,y)=>[(x-XR[0])/(XR[1]-XR[0])*OW,(1-(y-YR[0])/(YR[1]-YR[0]))*OH];
+const toXY=(px,py)=>[XR[0]+px/OW*(XR[1]-XR[0]),YR[0]+(1-py/OH)*(YR[1]-YR[0])];
+const OPT={
+  sgd:{name:'sgd',step(s,G){G=clip(G,40);s.x-=.0018*G[0];s.y-=.0018*G[1]}},
+  mom:{name:'momentum',step(s,G){G=clip(G,40);s.vx=.9*s.vx+G[0];s.vy=.9*s.vy+G[1];s.x-=.0007*s.vx;s.y-=.0007*s.vy}},
+  adam:{name:'adam',step(s,G,t){const b1=.9,b2=.999;s.mx=b1*s.mx+(1-b1)*G[0];s.my=b1*s.my+(1-b1)*G[1];s.sx=b2*s.sx+(1-b2)*G[0]**2;s.sy=b2*s.sy+(1-b2)*G[1]**2;
+    s.x-=.04*(s.mx/(1-b1**t))/(Math.sqrt(s.sx/(1-b2**t))+1e-8);s.y-=.04*(s.my/(1-b1**t))/(Math.sqrt(s.sy/(1-b2**t))+1e-8)}}};
+const STARTS=[[-1.6,2.6],[-1.5,-.5],[1.8,-.5],[0,2.5],[-.6,2.8]];
+let runs=[],t1=0,done1=0,startIdx=0;
+const vis1=onVisible(oc);
+function start1(x,y){t1=0;done1=0;runs=Object.keys(OPT).map(k=>({k,x,y,vx:0,vy:0,mx:0,my:0,sx:0,sy:0,path:[[x,y]]}))}
+function base1Draw(){
+  const f=fitCanvas(oc);if(!f.w||!f.h)return;ox=f.x;OW=f.w;OH=f.h;
+  const w=oc.width,h=oc.height,img=ox.createImageData(w,h),[r,g,b]=hexRgb(css('--line')),[r2,g2,b2]=hexRgb(css('--ink-3'));
+  const L=Math.log(1+2600);
+  for(let py=0;py<h;py++)for(let px=0;px<w;px++){
+    const x=XR[0]+px/w*(XR[1]-XR[0]),y=YR[0]+(1-py/h)*(YR[1]-YR[0]);
+    const v=Math.log(1+fR(x,y))/L*16,fr=v-Math.floor(v),i=(py*w+px)*4;
+    const band=Math.floor(v)%2,deep=v<.5;if(band||deep){img.data[i]=deep?r2:r;img.data[i+1]=deep?g2:g;img.data[i+2]=deep?b2:b;img.data[i+3]=deep?70:Math.round(110+90*(1-v/16))}}
+  base1=document.createElement('canvas');base1.width=w;base1.height=h;base1.getContext('2d').putImageData(img,0,0);draw1()}
+function draw1(){
+  if(!base1)return;
+  ox.clearRect(0,0,OW,OH);ox.drawImage(base1,0,0,OW,OH);
+  const [mx,my]=toPx(1,1),ink3=css('--ink-3');
+  ox.strokeStyle=ink3;ox.lineWidth=1;ox.beginPath();ox.moveTo(mx-5,my);ox.lineTo(mx+5,my);ox.moveTo(mx,my-5);ox.lineTo(mx,my+5);ox.stroke();
+  ox.fillStyle=ink3;ox.font='11px "Geist Mono",monospace';ox.fillText('min',mx+8,my+4);
+  const colors={sgd:ink3,mom:css('--ink'),adam:css('--accent')};
+  for(const s of runs){
+    ox.strokeStyle=colors[s.k];ox.lineWidth=1.6;ox.beginPath();
+    s.path.forEach((p,i)=>{const [a,b]=toPx(p[0],p[1]);i?ox.lineTo(a,b):ox.moveTo(a,b)});ox.stroke();
+    const [a,b]=toPx(s.x,s.y);ox.fillStyle=colors[s.k];ox.beginPath();ox.arc(a,b,4,0,7);ox.fill()}
+  if(runs[0]){const [a,b]=toPx(runs[0].path[0][0],runs[0].path[0][1]);ox.strokeStyle=css('--ink');ox.beginPath();ox.arc(a,b,6,0,7);ox.stroke()}
+  $('#opt-stats').textContent=`step ${t1}/${STEPS} · loss `+runs.map(s=>`${OPT[s.k].name} ${fR(s.x,s.y).toFixed(3)}`).join(' · ')}
+oc.addEventListener('click',e=>{const r=oc.getBoundingClientRect();const [x,y]=toXY(e.clientX-r.left,e.clientY-r.top);start1(x,y);draw1()});
+function loop1(now){
+  if(vis1.v&&runs.length){
+    if(t1<STEPS){for(let k=0;k<3&&t1<STEPS;k++){t1++;for(const s of runs){OPT[s.k].step(s,gR(s.x,s.y),t1);if(!isFinite(s.x)||Math.abs(s.x)>9||Math.abs(s.y)>9){s.x=Math.max(-9,Math.min(9,s.x||0));s.y=Math.max(-9,Math.min(9,s.y||0))}if(t1%2===0)s.path.push([s.x,s.y])}}draw1();if(t1>=STEPS)done1=now}
+    else if(now-done1>3500){startIdx=(startIdx+1)%STARTS.length;start1(...STARTS[startIdx])}
+  }
+  requestAnimationFrame(loop1)}
+themeHooks.push(base1Draw);
+
+/* ---------- fig. 2: MinHash near-duplicate estimate ---------- */
+const K=128,SEEDS=Array.from({length:K},(_,i)=>(Math.imul(i+1,0x9e3779b1)^0x85ebca6b)>>>0);
+function fnv(s){let h=0x811c9dc5;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function mix(h){h^=h>>>16;h=Math.imul(h,0x85ebca6b);h^=h>>>13;h=Math.imul(h,0xc2b2ae35);h^=h>>>16;return h>>>0}
+function shingles(t){const w=t.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu,' ').split(/\s+/).filter(Boolean),S=new Set();for(let i=0;i+3<=w.length;i++)S.add(w.slice(i,i+3).join(' '));if(!S.size&&w.length)S.add(w.join(' '));return S}
+function sig(S){const out=new Uint32Array(K).fill(0xffffffff),hs=[...S].map(fnv);for(let i=0;i<K;i++){let m=0xffffffff;for(const h of hs){const v=mix(h^SEEDS[i]);if(v<m)m=v}out[i]=m}return out}
+const slots=$('#mh-slots');slots.innerHTML='<i></i>'.repeat(K);
+function run2(){
+  const A=shingles($('#mh-a').value),B=shingles($('#mh-b').value);
+  let inter=0;for(const s of A)if(B.has(s))inter++;
+  const uni=A.size+B.size-inter,jac=uni?inter/uni:0;
+  const sa=sig(A),sb=sig(B);let m=0;
+  [...slots.children].forEach((el,i)=>{const hit=A.size&&B.size&&sa[i]===sb[i];if(hit)m++;el.className=hit?'on':''});
+  const est=m/K,verdict=est>=.5?'near-duplicate':est>=.15?'partial overlap':'different';
+  $('#mh-stats').textContent=`exact jaccard ${jac.toFixed(2)} · minhash ${est.toFixed(2)} (${m}/${K}) · ${verdict}`}
+$('#mh-a').addEventListener('input',run2);$('#mh-b').addEventListener('input',run2);
+
+/* ---------- metric count-up ---------- */
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;cio.unobserve(e.target);
+  const b=e.target,m=b.textContent.match(/^([+−-]?)(\d+)(.*)$/);if(!m||reduceMotion)return;
+  const end=+m[2],t0=performance.now();
+  const step=now=>{const p=Math.min(1,(now-t0)/1100),v=Math.round(end*(1-Math.pow(1-p,3)));b.textContent=m[1]+v+m[3];if(p<1)requestAnimationFrame(step)};
+  b.textContent=m[1]+0+m[3];requestAnimationFrame(step)}),{threshold:.6});
+document.querySelectorAll('.metric b').forEach(b=>cio.observe(b));
+
+/* ---------- boot ---------- */
+layout0();start1(...STARTS[0]);base1Draw();run2();
+const sizes=new WeakMap();const ro=new ResizeObserver(es=>es.forEach(e=>{const w=Math.round(e.contentRect.width);if(sizes.get(e.target)===w)return;sizes.set(e.target,w);clearTimeout(e.target._rz);e.target._rz=setTimeout(()=>e.target===cv?layout0():base1Draw(),120)}));ro.observe(cv);ro.observe(oc);
 matchMedia('(prefers-color-scheme:dark)').addEventListener('change',drawAll);
-if(matchMedia('(prefers-reduced-motion:reduce)').matches){cells.forEach(c=>{if(Math.random()<.4){c.s=2;labeled++}});count();drawAll()}else requestAnimationFrame(loop);
+if(!reduceMotion){requestAnimationFrame(loop0);requestAnimationFrame(loop1)}
+else{for(let i=0;i<STEPS;i++){t1++;for(const s of runs){OPT[s.k].step(s,gR(s.x,s.y),t1);if(t1%2===0)s.path.push([s.x,s.y])}}draw1()}
 </script>
 </body>
 </html>
