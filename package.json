@@ -1,0 +1,9 @@
+{
+  "name": "temirlan-portfolio-checks",
+  "private": true,
+  "scripts": {
+    "test": "node tests/portfolio-additions.cjs",
+    "test:browser": "playwright test"
+  },
+  "devDependencies": { "@playwright/test": "1.64.1" }
+}

@@ -361,7 +361,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:w
   </header>
 
   <section id="work" class="sec wrap">
-    <div class="sec-head"><h2 data-scramble>Selected <em class="s">work</em></h2><span class="mono muted up">06 · live in your browser</span></div>
+    <div class="sec-head"><h2 data-scramble>Selected <em class="s">work</em></h2><span class="mono muted up">08 · live in your browser</span></div>
     <div class="tiles" id="tiles"></div>
     <div class="also">
       <a class="rv" href="https://github.com/temirlanzzz/harness-atlas" target="_blank" rel="noopener"><b>Harness Atlas <span class="mono muted">↗</span></b><span>A visual map of AI harnesses: 12 parts, recipes by role, pains and maturity levels (EN/RU).</span></a>
@@ -526,11 +526,17 @@ const P=[
  lesson:'Federated learning protects privacy, not bandwidth: the weights sent were 55.7× the raw data they protect.'},
 {id:'pytest-facts',name:'pytest-facts',kind:'llm · evaluation',t:'#16161a',ti:'#c9c9d1',line:'Unit tests for LLM answers: PASS, FAIL or SKIP against a source',kpi:['12/14','held-out claims'],
  img:'img/fc-hero.webp',video:'assets/factcheck/factcheck-demo.mp4',demo:SITE+'pytest-facts/',repo:GHUB+'pytest-facts',
- lesson:'Pronouns break retrieval, not just NLI: fixing how premises are built took accuracy from 4/8 to 7/8.'}
+ lesson:'Pronouns break retrieval, not just NLI: fixing how premises are built took accuracy from 4/8 to 7/8.'},
+{id:'axis',name:'AXIS',kind:'robotics · kinematics',t:'#252c2b',ti:'#e9c986',line:'Move a 3R arm, solve a target, export the robot',kpi:['3','revolute joints'],
+ img:'img/axis-demo.webp',alt:'AXIS interactive three-joint robot arm with joint controls and live Cartesian position',demo:SITE+'robot_pose_estimation/',repo:GHUB+'robot_pose_estimation',
+ lesson:'Reaching a point is not the same as setting an orientation: this educational model solves position-only IK within joint limits.'},
+{id:'marginalia',name:'Marginalia',kind:'search · information retrieval',t:'#e8e2d4',ti:'#564e3b',line:'Compare BM25 and TF-IDF, then inspect every term',kpi:['2','ranking models'],
+ img:'img/marginalia-demo.webp',alt:'Marginalia search results with BM25 ranking controls and term-level score explanations',demo:SITE+'search-engine/',repo:GHUB+'search-engine',
+ lesson:'A score needs a paper trail: inspect term contributions, tune BM25, and compare rankings on a browser-local collection.'}
 ];
 $('#tiles').innerHTML=P.map(p=>{
   const inner=`<span class="tag">${p.kind}</span>${p.priv?'<span class="live">private</span>':'<span class="live"><i></i>live</span>'}
-    <div class="shot"><img src="${p.img}" alt="" loading="lazy" decoding="async"><video muted loop playsinline preload="none" data-src="${p.video}"></video></div>`;
+    <div class="shot"><img src="${p.img}" alt="${p.alt||''}" loading="lazy" decoding="async">${p.video?`<video muted loop playsinline preload="none" data-src="${p.video}"></video>`:''}</div>`;
   const tile=p.priv?`<div class="tile wipe" style="--t:${p.t};--ti:${p.ti}" data-cur="private · in development">${inner}</div>`
                    :`<a class="tile wipe" href="${p.demo}" style="--t:${p.t};--ti:${p.ti}" data-cur="open live demo ↗" aria-label="${p.name}: open live demo">${inner}</a>`;
   return `<article>${tile}
@@ -542,9 +548,11 @@ $('#tiles').innerHTML=P.map(p=>{
 
 /* tile video: hover on desktop, in-view on touch / private */
 const vio=new IntersectionObserver(es=>es.forEach(e=>{const t=e.target,v=t.querySelector('video');
+  if(!v)return;
   if(e.isIntersecting){if(!v.src)v.src=v.dataset.src;v.play().then(()=>t.classList.add('playing')).catch(()=>{})}else v.pause()}),{threshold:.5});
 document.querySelectorAll('.tile').forEach(t=>{
   const v=t.querySelector('video');
+  if(!v)return;
   if(!fine){vio.observe(t);return}
   t.addEventListener('mouseenter',()=>{if(!v.src)v.src=v.dataset.src;v.play().then(()=>t.classList.add('playing')).catch(()=>{})});
   t.addEventListener('mouseleave',()=>{t.classList.remove('playing');setTimeout(()=>v.pause(),300)});

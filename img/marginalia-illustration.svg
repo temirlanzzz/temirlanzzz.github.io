@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 680" role="img" aria-labelledby="title desc">
+<title id="title">Marginalia — Information Retrieval Lab</title><desc id="desc">An illustrative editorial search interface showing BM25 and TF-IDF comparison and term-level score explanations.</desc>
+<rect width="800" height="680" fill="#f7f4eb"/>
+<path d="M32 76H768M32 219H768" stroke="#d5cdbb"/>
+<text x="32" y="49" fill="#282c24" font-family="Georgia, serif" font-size="31" font-style="italic">Marginalia</text><text x="532" y="45" fill="#6e745f" font-family="Arial, sans-serif" font-size="11" letter-spacing="2">INFORMATION RETRIEVAL LAB</text>
+<text x="32" y="131" fill="#74765e" font-family="Arial, sans-serif" font-size="11" letter-spacing="2">A SMALL COLLECTION. A CLOSER LOOK.</text>
+<text x="32" y="181" fill="#33392c" font-family="Georgia, serif" font-size="39">Good search leaves a paper trail.</text>
+<rect x="32" y="245" width="736" height="59" rx="8" fill="#fffdf7" stroke="#bcbda5"/>
+<circle cx="57" cy="271" r="8" fill="none" stroke="#657353" stroke-width="2"/><path d="M63 277L69 283" stroke="#657353" stroke-width="2"/>
+<text x="85" y="283" fill="#33392c" font-family="Arial, sans-serif" font-size="18">document length</text>
+<rect x="32" y="321" width="79" height="31" rx="5" fill="#536145"/><text x="49" y="342" fill="#fffdf7" font-family="Arial, sans-serif" font-size="12">BM25</text>
+<rect x="119" y="321" width="79" height="31" rx="5" fill="#ebe7d9"/><text x="135" y="342" fill="#5e6452" font-family="Arial, sans-serif" font-size="12">TF-IDF</text>
+<text x="553" y="341" fill="#74765e" font-family="Arial, sans-serif" font-size="11" letter-spacing="1">COMPARE THE RANKINGS</text>
+<rect x="32" y="378" width="410" height="185" rx="8" fill="#eeedde" stroke="#c9cbb4"/>
+<text x="53" y="411" fill="#74765e" font-family="Arial, sans-serif" font-size="11" letter-spacing="2">THE COLLECTION / SEARCH &amp; INSPECT</text>
+<text x="53" y="450" fill="#33392c" font-family="Georgia, serif" font-size="24">Why length changes a ranking</text>
+<rect x="53" y="468" width="78" height="22" fill="#daddb9"/><text x="56" y="484" fill="#4d573c" font-family="Arial, sans-serif" font-size="13">document</text>
+<rect x="141" y="468" width="49" height="22" fill="#daddb9"/><text x="144" y="484" fill="#4d573c" font-family="Arial, sans-serif" font-size="13">length</text>
+<text x="53" y="530" fill="#74765e" font-family="Arial, sans-serif" font-size="13">Follow each matched term into the score →</text>
+<rect x="460" y="378" width="308" height="185" rx="8" fill="#fffdf7" stroke="#d5cdbb"/>
+<text x="480" y="411" fill="#74765e" font-family="Arial, sans-serif" font-size="11" letter-spacing="2">THE EVIDENCE</text>
+<g font-family="Arial, sans-serif" font-size="14" fill="#4d573c"><text x="480" y="449">Term frequency</text><text x="480" y="482">Inverse document frequency</text><text x="480" y="515">Contribution to total</text></g>
+<path d="M480 460H746M480 493H746M480 526H746" stroke="#e6e1d3"/>
+<text x="32" y="599" fill="#6b745a" font-family="Arial, sans-serif" font-size="14">Tune BM25 · Inspect terms · Import your own collection</text>
+<text x="32" y="642" fill="#797b6b" font-family="Arial, sans-serif" font-size="11" letter-spacing="2">FEATURE ILLUSTRATION / NOT A SCREENSHOT</text>
+</svg>

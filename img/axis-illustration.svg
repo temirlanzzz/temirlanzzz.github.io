@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 680" role="img" aria-labelledby="title desc">
+<title id="title">AXIS — Kinematics Lab</title><desc id="desc">An illustrative diagram of a three-joint robot arm with joint controls, position-only inverse kinematics, and URDF export.</desc>
+<defs><pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" fill="none" stroke="#303b39" stroke-width="1"/></pattern><linearGradient id="bg" x2="0" y2="1"><stop stop-color="#1d2625"/><stop offset="1" stop-color="#101817"/></linearGradient></defs>
+<rect width="800" height="680" fill="url(#bg)"/>
+<path d="M0 76H800" stroke="#39433f"/>
+<g font-family="Arial, sans-serif"><text x="32" y="46" fill="#f4efe3" font-size="25" font-weight="700" letter-spacing="4">AXIS</text><text x="136" y="44" fill="#a8b7ad" font-size="12" letter-spacing="2">KINEMATICS LAB</text><circle cx="626" cy="39" r="4" fill="#a6d8c0"/><text x="640" y="44" fill="#a6d8c0" font-size="12">BROWSER LOCAL</text>
+<text x="32" y="123" fill="#f0ce8e" font-size="12" letter-spacing="2">01 / EXPLORE THE CHAIN</text>
+<text x="32" y="171" fill="#f5f1e8" font-size="35">From joints to coordinates.</text>
+<rect x="28" y="200" width="474" height="360" rx="12" fill="url(#grid)" stroke="#39433f"/>
+<path d="M76 498H458M264 527V236M91 537L421 300" stroke="#66766c" stroke-width="1.5" opacity=".7"/>
+<ellipse cx="238" cy="492" rx="80" ry="18" fill="#0c1210"/>
+<path d="M202 477L202 454Q236 441 270 454V477Z" fill="#73877e" stroke="#a5b9ad" stroke-width="2"/>
+<path d="M236 452V408L190 308L341 270" fill="none" stroke="#0f1714" stroke-width="35" stroke-linejoin="round"/>
+<path d="M236 452V408L190 308L341 270" fill="none" stroke="#d8be86" stroke-width="23" stroke-linejoin="round"/>
+<g fill="#34453d" stroke="#ecd398" stroke-width="6"><circle cx="236" cy="408" r="17"/><circle cx="190" cy="308" r="17"/></g>
+<path d="M342 262L362 257M342 277L362 272" stroke="#c9d7cc" stroke-width="6"/>
+<circle cx="362" cy="265" r="7" fill="#acd9c3"/>
+<path d="M362 282V487" stroke="#acd9c3" stroke-dasharray="5 5"/>
+<text x="52" y="535" fill="#b6c5bb" font-size="12" letter-spacing="2">AX–03 / EDUCATIONAL 3R MODEL</text>
+<rect x="522" y="200" width="250" height="360" rx="12" fill="#222d29" stroke="#39433f"/>
+<text x="544" y="237" fill="#f0ede5" font-size="15">Joint space</text>
+<g fill="#adbfb2" font-size="13"><text x="544" y="281">Base yaw</text><text x="544" y="350">Shoulder</text><text x="544" y="419">Elbow</text></g>
+<g stroke="#4d6054" stroke-width="4" stroke-linecap="round"><path d="M544 301H747"/><path d="M544 370H747"/><path d="M544 439H747"/></g>
+<g fill="#e7c78b"><circle cx="644" cy="301" r="7"/><circle cx="674" cy="370" r="7"/><circle cx="608" cy="439" r="7"/></g>
+<rect x="544" y="486" width="203" height="43" rx="6" fill="#e5c386"/><text x="586" y="513" fill="#242c26" font-size="14">Export URDF ↓</text>
+<text x="32" y="599" fill="#a9c6b6" font-size="14">Forward kinematics · Position-only IK · Joint limits</text>
+<text x="32" y="642" fill="#9aa99f" font-size="11" letter-spacing="2">FEATURE ILLUSTRATION / NOT A SCREENSHOT</text></g>
+</svg>
