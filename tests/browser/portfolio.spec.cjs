@@ -17,7 +17,13 @@ test('existing portfolio is preserved and both added cards work', async ({ page 
     await expect(card.locator('img')).toHaveJSProperty('complete', true);
     await expect.poll(() => card.locator('img').evaluate(img => img.naturalWidth)).toBeGreaterThan(0);
   }
-  await page.locator('#work').scrollIntoViewIfNeeded();
+  // Visit existing reveal-on-scroll sections before a full-page capture.
+  // A screenshot alone does not trigger IntersectionObserver below the viewport.
+  for (const section of await page.locator('.rv').all()) {
+    await section.scrollIntoViewIfNeeded();
+    await expect(section).toHaveCSS('opacity', '1');
+  }
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
   await page.screenshot({ path: testInfo.outputPath('portfolio.png'), fullPage: true });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
   await expect(page.getByRole('link', { name: 'AXIS: open live demo' })).toHaveAttribute('href', 'https://temirlanzzz.github.io/robot_pose_estimation/');
