@@ -1,0 +1,16 @@
+# Files Wrangler must not upload as static assets (see wrangler.jsonc).
+.git
+.github
+.wrangler
+node_modules
+tests
+tools
+test-results
+playwright-report
+package.json
+package-lock.json
+playwright.config.cjs
+wrangler.jsonc
+.assetsignore
+.gitignore
+.nojekyll
