@@ -533,12 +533,12 @@ const P=[
 {id:'marginalia',name:'Marginalia',kind:'search · information retrieval',t:'#e8e2d4',ti:'#564e3b',line:'Compare BM25 and TF-IDF, then inspect every term',kpi:['2','ranking models'],
  img:'img/marginalia-demo.webp',alt:'Marginalia search results with BM25 ranking controls and term-level score explanations',demo:SITE+'search-engine/',repo:GHUB+'search-engine',
  lesson:'A score needs a paper trail: inspect term contributions, tune BM25, and compare rankings on a browser-local collection.'},
-{id:'atrium',name:'ATRIUM',kind:'three.js · fashion retail',t:'#0b0c10',ti:'#ffcf9a',line:'Fall through four towers where every window is a garment',kpi:['∞','floors, ~15 draw calls'],
- img:'img/atrium-demo.webp',video:'assets/atrium/atrium-demo.mp4',alt:'ATRIUM: looking down a courtyard of four towers whose lit windows each display a garment on oak shelves',demo:'atrium/',repo:GHUB+'atrium',
- lesson:'Scaling hidden instances to zero still costs vertex work, so garments are re-packed per type each time a floor of the endless fall recycles.'},
-{id:'arcanum',name:'Arcanum',kind:'three.js · gamified shop',t:'#1a1220',ti:'#e8c982',line:'Fly a magic library where every shelf is a store',kpi:['730','tagged listings'],
- img:'img/arcanum-demo.webp',video:'assets/arcanum/arcanum-demo.mp4',alt:'Arcanum fantasy library shop: a furniture wing with a bed, desk, dining set and sofa, shelves of vases and clocks, red price tags on every item and a glowing rune circle',demo:'arcanum/',repo:GHUB+'arcanum',
- lesson:'Ten wings of lights made every pixel pay for all of them: a small light pool for the nearest wings plus per-wing culling cut an in-wing frame from 2.2M to 0.28M triangles.'}
+{id:'atrium',name:'ATRIUM',kind:'three.js · retail',t:'#dcd9d4',ti:'#161616',line:'A vertical store where every window is a real product',kpi:['11','scanned products'],
+ img:'img/atrium-demo.webp',video:'assets/atrium/atrium-demo.mp4',alt:'ATRIUM: looking up a stone courtyard of lit shop windows displaying garments on dress forms, with the sky above',demo:'atrium/',repo:GHUB+'atrium',
+ lesson:'Baking transforms into meshopt-quantized vertices silently clips them; scans must be copied out to floats before they can be instanced.'},
+{id:'arcanum',name:'Arcanum',kind:'three.js · retail',t:'#e9e2d8',ti:'#1d1a16',line:'A library department store stocked with real scans',kpi:['9','departments'],
+ img:'img/arcanum-demo.webp',video:'assets/arcanum/arcanum-demo.mp4',alt:'Arcanum: a furniture room in a library department store with a blue velvet sofa, two tufted chairs, a coffee table and a lamp on an oak floor, each with a small red price tag',demo:'arcanum/',repo:GHUB+'arcanum',
+ lesson:'Real colourways come free with KHR_materials_variants: the product-page swatches switch the scan\'s own materials instead of tinting one.'}
 ];
 $('#tiles').innerHTML=P.map(p=>{
   const inner=`<span class="tag">${p.kind}</span>${p.priv?'<span class="live">private</span>':'<span class="live"><i></i>live</span>'}

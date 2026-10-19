@@ -23,7 +23,8 @@ const target = join(portfolio, name);
 rmSync(target, { recursive: true, force: true });
 mkdirSync(target, { recursive: true });
 cpSync(dist, target, { recursive: true });
-writeFileSync(join(target, 'SOURCE.md'), `# ${name} static demo\n\nSource: https://github.com/temirlanzzz/${name}\n\nSource commit: ${commit}\n\nBuilt with Node.js ${process.version}: npm ci, then npm run build (Vite, relative base).\n\nReproduce from the portfolio root: node tools/sync-three-demo.mjs ${name} ../${name}\n\nEverything is procedural; no third-party textures, models or fonts are bundled.\n`);
+writeFileSync(join(target, 'SOURCE.md'), `# ${name} static demo\n\nSource: https://github.com/temirlanzzz/${name}\n\nSource commit: ${commit}\n\nBuilt with Node.js ${process.version}: npm ci, then npm run build (Vite, relative base).\n\nReproduce from the portfolio root: node tools/sync-three-demo.mjs ${name} ../${name}\n\nThird-party models, HDRIs and textures are credited in CREDITS.md.\n`);
+if (existsSync(join(source, 'CREDITS.md'))) cpSync(join(source, 'CREDITS.md'), join(target, 'CREDITS.md'));
 
 // Card media: a 1600x1000 still and a short H.264 reel rendered by the source repo's scripts/capture.mjs.
 const webp = join(source, 'out', 'preview.webp'), still = join(source, 'out', 'preview.png'), reel = join(source, 'out', `${name}-demo.mp4`);
