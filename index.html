@@ -361,7 +361,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:w
   </header>
 
   <section id="work" class="sec wrap">
-    <div class="sec-head"><h2 data-scramble>Selected <em class="s">work</em></h2><span class="mono muted up">08 · live in your browser</span></div>
+    <div class="sec-head"><h2 data-scramble>Selected <em class="s">work</em></h2><span class="mono muted up">10 · live in your browser</span></div>
     <div class="tiles" id="tiles"></div>
     <div class="also">
       <a class="rv" href="https://github.com/temirlanzzz/harness-atlas" target="_blank" rel="noopener"><b>Harness Atlas <span class="mono muted">↗</span></b><span>A visual map of AI harnesses: 12 parts, recipes by role, pains and maturity levels (EN/RU).</span></a>
@@ -532,7 +532,13 @@ const P=[
  lesson:'Reaching a point is not the same as setting an orientation: this educational model solves position-only IK within joint limits.'},
 {id:'marginalia',name:'Marginalia',kind:'search · information retrieval',t:'#e8e2d4',ti:'#564e3b',line:'Compare BM25 and TF-IDF, then inspect every term',kpi:['2','ranking models'],
  img:'img/marginalia-demo.webp',alt:'Marginalia search results with BM25 ranking controls and term-level score explanations',demo:SITE+'search-engine/',repo:GHUB+'search-engine',
- lesson:'A score needs a paper trail: inspect term contributions, tune BM25, and compare rankings on a browser-local collection.'}
+ lesson:'A score needs a paper trail: inspect term contributions, tune BM25, and compare rankings on a browser-local collection.'},
+{id:'atrium',name:'ATRIUM',kind:'three.js · fashion retail',t:'#0b0c10',ti:'#ffcf9a',line:'Fall through four towers where every window is a garment',kpi:['∞','floors, ~15 draw calls'],
+ img:'img/atrium-demo.webp',video:'assets/atrium/atrium-demo.mp4',alt:'ATRIUM: looking down a courtyard of four towers whose lit windows each display a garment on oak shelves',demo:'atrium/',repo:GHUB+'atrium',
+ lesson:'Scaling hidden instances to zero still costs vertex work, so garments are re-packed per type each time a floor of the endless fall recycles.'},
+{id:'arcanum',name:'Arcanum',kind:'three.js · gamified shop',t:'#1a1220',ti:'#e8c982',line:'Fly a magic library where every shelf is a store',kpi:['730','tagged listings'],
+ img:'img/arcanum-demo.webp',video:'assets/arcanum/arcanum-demo.mp4',alt:'Arcanum fantasy library shop: a furniture wing with a bed, desk, dining set and sofa, shelves of vases and clocks, red price tags on every item and a glowing rune circle',demo:'arcanum/',repo:GHUB+'arcanum',
+ lesson:'Ten wings of lights made every pixel pay for all of them: a small light pool for the nearest wings plus per-wing culling cut an in-wing frame from 2.2M to 0.28M triangles.'}
 ];
 $('#tiles').innerHTML=P.map(p=>{
   const inner=`<span class="tag">${p.kind}</span>${p.priv?'<span class="live">private</span>':'<span class="live"><i></i>live</span>'}
