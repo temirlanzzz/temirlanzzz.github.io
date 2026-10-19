@@ -1,13 +1,13 @@
 const { test, expect } = require('@playwright/test');
 
-test('existing portfolio is preserved and both added cards work', async ({ page }, testInfo) => {
+test('existing portfolio is preserved and the added cards work', async ({ page }, testInfo) => {
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));
   await page.goto('/');
-  await expect(page.locator('#tiles article')).toHaveCount(8);
-  const names = ['Tracer', 'Graft', 'Label Less', 'Cutout', 'FedAvg, live', 'pytest-facts', 'AXIS', 'Marginalia'];
+  await expect(page.locator('#tiles article')).toHaveCount(10);
+  const names = ['Tracer', 'Graft', 'Label Less', 'Cutout', 'FedAvg, live', 'pytest-facts', 'AXIS', 'Marginalia', 'ATRIUM', 'Arcanum'];
   await expect(page.locator('#tiles h3')).toHaveText(names);
-  await expect(page.locator('#tiles video')).toHaveCount(6);
+  await expect(page.locator('#tiles video')).toHaveCount(8);
   await expect(page.locator('#work .also a')).toHaveCount(3);
   for (const id of ['draw-box', 'lab', 'pal-box', 'ask-box', 'opt-box', 'career', 'experience']) {
     await expect(page.locator(`#${id}`)).toHaveCount(1);
@@ -28,6 +28,8 @@ test('existing portfolio is preserved and both added cards work', async ({ page 
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
   await expect(page.getByRole('link', { name: 'AXIS: open live demo' })).toHaveAttribute('href', 'https://temirlanzzz.github.io/robot_pose_estimation/');
   await expect(page.getByRole('link', { name: 'Marginalia: open live demo' })).toHaveAttribute('href', 'https://temirlanzzz.github.io/search-engine/');
+  await expect(page.getByRole('link', { name: 'ATRIUM: open live demo' })).toHaveAttribute('href', 'atrium/');
+  await expect(page.getByRole('link', { name: 'Arcanum: open live demo' })).toHaveAttribute('href', 'arcanum/');
   expect(errors).toEqual([]);
 });
 
