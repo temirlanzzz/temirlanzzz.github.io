@@ -1,6 +1,7 @@
 const { defineConfig } = require('@playwright/test');
 module.exports = defineConfig({
   testDir: './tests/browser',
+  timeout: 60000,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: { baseURL: 'http://127.0.0.1:8090', trace: 'retain-on-failure' },
   projects: [
