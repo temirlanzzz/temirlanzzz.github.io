@@ -16,8 +16,17 @@ const old = data(baseline), projects = data(html);
 assert.equal(old.length, 6);
 assert.equal(projects.length, 10);
 assert.deepEqual(projects.slice(0, 6), old, 'All six original cards remain byte-for-byte equivalent as data');
-// Every page section, style, mini-link, and lab is unchanged except the count.
-assert.equal(html.split('/* ---------- work data ---------- */')[0].replace('10 · live in your browser', '06 · live in your browser'), baseline.split('/* ---------- work data ---------- */')[0]);
+// Every original line of markup and CSS before the work data is still there.
+// The ASCII ocean only adds lines; the one deliberate change is that the
+// theme now defaults to dark (the black water), with the toggle kept.
+const before = html.split('/* ---------- work data ---------- */')[0];
+for (const line of baseline.split('/* ---------- work data ---------- */')[0].split('\n')) {
+  if (line.includes("localStorage.getItem('theme')") || line.includes('06 · live in your browser')) continue;
+  assert.ok(before.includes(line), `Original line kept: ${line.slice(0, 90)}`);
+}
+assert.match(before, /<canvas id="ocean" aria-hidden="true"><\/canvas>/);
+assert.match(html, /import \{ createOcean \} from '\.\/js\/ocean\.js'/);
+assert.ok(fs.existsSync(path.join(root, 'js/ocean.js')), 'ocean engine shipped');
 assert.equal(html.split('/* cursor pill that follows the pointer over tiles */')[1], baseline.split('/* cursor pill that follows the pointer over tiles */')[1]);
 assert.match(html, /10 · live in your browser/);
 for (const p of projects) assert.ok(fs.existsSync(path.join(root, p.img)), p.img);
@@ -27,7 +36,12 @@ assert.equal(projects[7].demo, 'https://temirlanzzz.github.io/search-engine/');
 assert.equal(projects[8].demo, 'atrium/');
 assert.equal(projects[9].demo, 'arcanum/');
 for (const p of projects.filter(p => p.video)) assert.ok(fs.existsSync(path.join(root, p.video)), p.video);
-for (const script of html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)) new vm.Script(script[1]);
+for (const script of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)) {
+  // classic scripts compile as scripts; module scripts (the ocean) are checked as ES modules
+  if (script[1].includes('type="module"')) execFileSync(process.execPath, ['--input-type=module', '--check'], { input: script[2] });
+  else new vm.Script(script[2]);
+}
+execFileSync(process.execPath, ['--input-type=module', '--check'], { input: fs.readFileSync(path.join(root, 'js/ocean.js')) });
 let rendered = '';
 vm.runInNewContext(html.match(/const GHUB=[\s\S]*?\n\/\* tile video/)[0].replace(/\/\* tile video$/, ''), { $: () => ({ set innerHTML(value) { rendered = value; } }) });
 assert.equal((rendered.match(/<article>/g) || []).length, 10);

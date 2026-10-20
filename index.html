@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('theme')||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
 <style>
 :root{
   --bg:#ffffff;--surface:#f5f5f3;--card:#ffffff;--ink:#111111;--ink-2:#4f4f4c;--ink-3:#8c8c87;--line:#e8e8e4;
@@ -297,9 +297,34 @@ footer .wrap{display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:w
 .wipe{clip-path:inset(100% 0 0 0 round 22px);transition:clip-path 1.1s var(--ease)}
 .wipe.in{clip-path:inset(0 0 0 0 round 22px)}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.wipe{clip-path:none}}
+
+/* ---------- ascii ocean: a live background behind glass panels ---------- */
+:root{--glass:rgba(255,255,255,.7);--glass-line:rgba(0,0,0,.07)}
+:root[data-theme="dark"]{--glass:rgba(8,9,12,.5);--glass-line:rgba(255,255,255,.08)}
+html{background:var(--bg)}
+body{background:transparent}
+#ocean{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none;max-width:none}
+main>section:not(.ocean-intro),main>header,footer .wrap{background:var(--glass);backdrop-filter:blur(18px) saturate(1.25);-webkit-backdrop-filter:blur(18px) saturate(1.25);border:1px solid var(--glass-line);border-radius:32px;margin-top:28px}
+main>section:not(.ocean-intro),main>header{padding-top:40px;padding-bottom:48px}
+main>section.sec{padding-top:56px}
+footer{background:transparent;border:0}
+footer .wrap{padding-top:18px;padding-bottom:18px;margin-bottom:28px}
+.ocean-intro{position:relative;height:calc(100svh - 64px);min-height:520px;display:flex;flex-direction:column;justify-content:space-between;padding:22px 0 26px;color:#e8ecf2}
+:root[data-theme="light"] .ocean-intro{color:var(--ink)}
+.oi-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.oi-top span{color:inherit;opacity:.72}
+.oi-word{position:absolute;left:6%;right:6%;top:22%;height:42%;pointer-events:none}
+.oi-cap{text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+.oi-cap p{margin:0;font-size:clamp(15px,1.6vw,19px);opacity:.82;max-width:34em;text-wrap:balance}
+.oi-down{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 15px;border-radius:999px;border:1px solid currentColor;opacity:.75;transition:opacity .25s,transform .25s}
+.oi-down:hover{opacity:1;transform:translateY(2px)}
+.oi-again{opacity:.6;font-size:11px}
+.oi-again:hover{opacity:1}
+@media (max-width:720px){main>section:not(.ocean-intro),main>header,footer .wrap{border-radius:22px;margin-left:10px;margin-right:10px}}
 </style>
 </head>
 <body>
+<canvas id="ocean" aria-hidden="true"></canvas>
 
 <nav class="nav">
   <div class="wrap">
@@ -319,6 +344,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:w
 </nav>
 
 <main id="top">
+  <section class="ocean-intro" id="ocean-intro" aria-label="An ASCII ocean drawn live in the background">
+    <div class="wrap oi-top"><span class="mono">fig. ∞ — an ascii ocean, simulated live in your browser</span><span class="mono">click the water to send a sonar ping</span></div>
+    <div class="oi-word" id="oi-word" aria-hidden="true"></div>
+    <div class="wrap oi-cap">
+      <p>Hundreds of fish school and scatter, sharks hunt, a manta glides, jellyfish drift up from the deep. Every creature is made of text.</p>
+      <div><a class="oi-down mono" href="#about">dive in ↓</a> <button class="oi-again mono" id="oi-again">spell it again</button></div>
+    </div>
+  </section>
+
   <section id="about" class="me wrap">
     <div class="me-ava rv">
       <canvas id="me" role="img" aria-label="Portrait of Temirlan rendered as animated matrix glyphs"></canvas>
@@ -496,6 +530,32 @@ footer .wrap{display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:w
     </div>
   </section>
 </main>
+
+<script type="module">
+import { createOcean } from './js/ocean.js';
+const root = document.documentElement, cv = document.getElementById('ocean');
+const ocean = createOcean(cv);
+const themeNow = () => root.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+ocean.setTheme(themeNow());
+new MutationObserver(() => ocean.setTheme(themeNow())).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+// scrolling down the page dives deeper into the water
+const depth = () => ocean.setDepth(scrollY / Math.max(1, root.scrollHeight - innerHeight));
+addEventListener('scroll', depth, { passive: true }); depth();
+// the school spells the name on arrival, then a shark tears through it
+const box = document.getElementById('oi-word');
+let lastSpell = -1e9;
+const spell = (force) => {
+  const r = box.getBoundingClientRect();
+  if (r.bottom < 40 || r.top > innerHeight - 40) return;
+  if (!force && performance.now() - lastSpell < 25000) return;
+  lastSpell = performance.now();
+  ocean.spell('TEMIRLAN', { x: r.left, y: r.top, w: r.width, h: r.height });
+};
+document.fonts.ready.then(() => setTimeout(() => spell(true), 900));
+new IntersectionObserver(([e]) => { if (e.isIntersecting) spell(false); }, { threshold: .6 }).observe(box);
+document.getElementById('oi-again').addEventListener('click', () => spell(true));
+window.__ocean = ocean;
+</script>
 
 <footer><div class="wrap"><span>© 2026 temirlan zarymkanov</span><span>almaty, kazakhstan</span></div></footer>
 <div class="cursor" id="cursor" aria-hidden="true"></div>
