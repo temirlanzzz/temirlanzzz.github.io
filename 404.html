@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Page not found — Temirlan Zarymkanov</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23111'/%3E%3Ccircle cx='10' cy='10' r='3' fill='%23ff5a1f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('theme')||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+<style>
+:root{--bg:#ffffff;--ink:#111111;--ink-2:#4f4f4c;--ink-3:#8c8c87;--line:#e8e8e4;--accent:#ff5a1f;--glass:rgba(255,255,255,.72);
+  --sans:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;color-scheme:light}
+:root[data-theme="dark"]{--bg:#0a0a0a;--ink:#efefec;--ink-2:#a9a9a4;--ink-3:#6e6e6a;--line:#262626;--accent:#ff6a33;--glass:rgba(12,14,16,.62);color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;min-height:100svh;display:grid;place-items:center;padding:24px 16px;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+#ocean{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none}
+main{width:min(100%,920px);padding:22px;border-radius:28px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2)}
+.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px}
+.fit{overflow:hidden;color:var(--ink)}
+.fit pre{margin:0;font-family:Menlo,Consolas,"DejaVu Sans Mono","Liberation Mono",monospace;font-size:11px;line-height:1.66;white-space:pre}
+.fit canvas{margin:0 auto}
+h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.small{display:none;margin:14px 0 0;color:var(--ink-2);font-size:15px}
+.small b{display:block;color:var(--ink);font-weight:500}
+@media (max-width:600px){.small{display:block}}
+.links{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.links a{display:inline-flex;align-items:center;height:38px;padding:0 16px;border-radius:999px;border:1px solid var(--line);font-family:var(--mono);font-size:12.5px;color:var(--ink);text-decoration:none;transition:border-color .2s,background .2s}
+.links a:first-child{background:var(--accent);border-color:var(--accent);color:#fff}
+.links a:hover{border-color:var(--ink-3)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+</style>
+</head>
+<body>
+<canvas id="ocean" aria-hidden="true"></canvas>
+<main>
+  <div class="top"><span>error 404 · page not found</span><span id="path"></span></div>
+  <h1>Page not found. This page sank to the bottom.</h1>
+  <div class="fit" role="img" aria-label="Animated ASCII seabed: a large 404 resting under the waves, with bubbles rising, an anchor on a chain, weed swaying on the sand and a fish swimming past."><pre id="sunk" data-cols="84"></pre></div>
+  <p class="small" aria-hidden="true"><b>This page sank to the bottom.</b>The link may be broken, or the page has moved.</p>
+  <nav class="links" aria-label="Where to next">
+    <a href="/">← Back to home</a>
+    <a href="/#work">Selected work</a>
+    <a href="/#lab">The lab</a>
+    <a id="report" href="mailto:temirlan.zarymkanov@gmail.com?subject=Broken%20link">Report this link</a>
+  </nav>
+</main>
+<script type="module">
+// Absolute paths: this page is served for any missing URL, at any depth.
+import { createOcean } from '/js/ocean.js';
+import { play } from '/js/ascii/runtime/player.js';
+import * as sunk from '/js/ascii/pieces/sunk-404.js';
+const path = location.pathname;
+document.getElementById('path').textContent = path.length > 40 ? path.slice(0, 39) + '…' : path;
+document.getElementById('report').href += '&body=' + encodeURIComponent('This link is broken: ' + location.href);
+const ocean = createOcean(document.getElementById('ocean'));
+ocean.setTheme(document.documentElement.dataset.theme);
+ocean.setDepth(.85);
+const pre = document.getElementById('sunk'), box = pre.parentElement;
+const size = () => { pre.style.fontSize = Math.min(13, (box.clientWidth - 1) / (sunk.meta.cols * 0.602)) + 'px'; };
+size(); new ResizeObserver(size).observe(box);
+play(pre, sunk, { t0: 3.3 });
+</script>
+</body>
+</html>
