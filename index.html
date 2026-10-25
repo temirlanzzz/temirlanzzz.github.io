@@ -321,6 +321,16 @@ footer .wrap{padding-top:18px;padding-bottom:18px;margin-bottom:28px}
 .oi-again{opacity:.6;font-size:11px}
 .oi-again:hover{opacity:1}
 @media (max-width:720px){main>section:not(.ocean-intro),main>header,footer .wrap{border-radius:22px;margin-left:10px;margin-right:10px}}
+/* ascii pieces (js/ascii): neural forward pass, career log, reel loader */
+.ascii-fit{overflow-x:auto;scrollbar-width:none;color:var(--ink)}
+.ascii-fit::-webkit-scrollbar{display:none}
+.ascii-fit pre{margin:0;font-family:Menlo,Consolas,"DejaVu Sans Mono","Liberation Mono",monospace;font-size:11px;line-height:1.66;white-space:pre}
+.ascii-fit canvas{margin:0 auto;max-width:none!important}
+#log-box{margin-top:18px}
+.reel-load{position:absolute;left:10px;top:10px;z-index:2;padding:6px 10px;border-radius:8px;background:rgba(10,10,10,.78);backdrop-filter:blur(6px);color:#efefec;opacity:0;transition:opacity .25s;pointer-events:none}
+.reel-load.on{opacity:1}
+@media (max-width:640px){#fwd-box,#log-box{padding-top:88px}}
+.reel-load pre{margin:0;font-family:Menlo,Consolas,"DejaVu Sans Mono",monospace;font-size:11px;line-height:1.66}
 </style>
 </head>
 <body>
@@ -385,6 +395,11 @@ footer .wrap{padding-top:18px;padding-bottom:18px;margin-bottom:28px}
         </div>
       </div>
       <div class="foot"><span>A 784 → 64 → 10 network I trained on MNIST in plain NumPy (<a class="u" href="data/train_mnist.py">train script</a>). <span class="acc">Weights are int8, 68 KB, and run in your browser.</span></span><span class="muted">your drawing never leaves the page</span></div>
+    </div>
+    <div class="box box-pad rv" id="fwd-box">
+      <div class="lbl"><span>fig. 0b — inside a forward pass, one layer at a time</span><span>toy weights · illustration</span></div>
+      <div class="ascii-fit" role="img" aria-label="Animated ASCII diagram: a 7 by 7 pixel shape is summed into rows, passes through two sigmoid hidden layers along weighted connections and ends in softmax probabilities for ring, square, triangle and cross."><pre id="fwd" data-piece="neural-forward-pass" data-still="4.2"></pre></div>
+      <div class="foot"><span>Fig. 0, slowed down: pixels flow along weighted connections, each layer lights up in turn, and a softmax names the shape. <span class="acc">Orange edges are positive weights, teal negative.</span></span><span class="muted">piece adapted from <a class="u" href="https://www.ascii-magic.com/ascii" target="_blank" rel="noopener">ascii magic</a></span></div>
     </div>
     <div class="hero-strip">
       <div class="metric rv"><b>+20%</b><span>user revenue from a new bid-optimization system</span><span class="mono">adigy.ai</span></div>
@@ -515,6 +530,10 @@ footer .wrap{padding-top:18px;padding-bottom:18px;margin-bottom:28px}
         </div>
       </div>
     </div>
+    <div class="box box-pad rv" id="log-box">
+      <div class="lbl"><span>git log --graph career</span><span>education merged in as branches</span></div>
+      <div class="ascii-fit" role="img" aria-label="Animated ASCII git log of my career, oldest first: BRI 2020, Nazarbayev University research 2021, two papers, Macdent 2022, a BSc merged in 2023, Fleek 2023, Sewts 2024, an MSc merged in 2025, and team lead at Adigy.ai in October 2025."><pre id="career-log" data-piece="career-log" data-still="60" data-min="7"></pre></div>
+    </div>
   </section>
 
   <section id="contact" class="wrap">
@@ -555,6 +574,39 @@ document.fonts.ready.then(() => setTimeout(() => spell(true), 900));
 new IntersectionObserver(([e]) => { if (e.isIntersecting) spell(false); }, { threshold: .6 }).observe(box);
 document.getElementById('oi-again').addEventListener('click', () => spell(true));
 window.__ocean = ocean;
+</script>
+
+<script type="module">
+// ASCII pieces (js/ascii, MIT, see js/ascii/NOTICE.md). Each one loads when it comes near the
+// screen, is sized to fit its box (or scrolls sideways below data-min px), and plays only while visible.
+import { play } from './js/ascii/runtime/player.js';
+import { reelLoader } from './js/ascii/pieces/reel-loader.js';
+const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fit = (pre, cols) => {
+  const box = pre.parentElement;
+  const size = () => { pre.style.fontSize = Math.max(+(pre.dataset.min || 3), Math.min(13, (box.clientWidth - 1) / (cols * 0.602))) + 'px'; };
+  size(); new ResizeObserver(size).observe(box);
+};
+const lazy = new IntersectionObserver(es => es.forEach(async e => {
+  if (!e.isIntersecting) return;
+  lazy.unobserve(e.target);
+  const pre = e.target, mod = await import(`./js/ascii/pieces/${pre.dataset.piece}.js`);
+  fit(pre, mod.meta.cols);
+  play(pre, mod, { still, t0: still ? +pre.dataset.still : 0 });
+}), { rootMargin: '300px' });
+document.querySelectorAll('pre[data-piece]').forEach(pre => lazy.observe(pre));
+
+// project cards: a terminal progress bar while a reel buffers (only if it takes a moment)
+document.querySelectorAll('.tile .shot video').forEach(v => {
+  const chip = document.createElement('div'), pre = document.createElement('pre');
+  chip.className = 'reel-load'; chip.setAttribute('aria-hidden', 'true'); chip.append(pre); v.after(chip);
+  const progress = () => (v.duration > 0 && v.buffered.length ? v.buffered.end(v.buffered.length - 1) / v.duration : -1);
+  let stop = null, timer = 0;
+  const show = () => { clearTimeout(timer); timer = setTimeout(() => { if (stop) return; stop = play(pre, reelLoader(progress), { still: false }); chip.classList.add('on'); }, 180); };
+  const hide = () => { clearTimeout(timer); chip.classList.remove('on'); if (stop) { stop(); stop = null; } };
+  v.addEventListener('loadstart', show); v.addEventListener('waiting', show);
+  v.addEventListener('playing', hide); v.addEventListener('pause', hide); v.addEventListener('error', hide);
+});
 </script>
 
 <footer><div class="wrap"><span>© 2026 temirlan zarymkanov</span><span>almaty, kazakhstan</span></div></footer>
